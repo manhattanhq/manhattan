@@ -190,6 +190,8 @@ We consider that each pharmacy is in contract with a pharmaceutical company, to 
 
 Finally, if a pharmacy signs a contract with the same company, more than one time, then the last contract is the one registered in our database.
 
+[:arrow_up:Back to top!](#contents)
+
 ### ER Diagram
 
 <div align="center">
@@ -206,7 +208,7 @@ Keys are noted in a **bold** & _tilted_ fashion.
 
 Also, we replaced the composite attribute **Address** with the simple attributes composing it.
 
-#### Strong Entities to Relations
+### Strong Entities to Relations
 
 - **Patient** (**_PatientId_**, FirstName, LastName, Town, StreetName, Number, PostalCode, Age)
 - **Doctor** (**_DoctorId_**, FirstName, LastName, Specialty, ExperienceYears)
@@ -214,7 +216,7 @@ Also, we replaced the composite attribute **Address** with the simple attributes
 - **Drug** (**_Drug_**, Name, Formula)
 - **Pharmacy** (**_PharmacyId_**, Name, Town, StreetName, Number, PostalCode, PhoneNumber)
 
-#### Relation Sets
+### Relation Sets
 
 - **SeenBy** (**_PatientId_**, DoctorId)
 - **Sell** (**_PharmacyId_**, **_DrugId_**, Price)
@@ -222,6 +224,8 @@ Also, we replaced the composite attribute **Address** with the simple attributes
 - **Prescription** (**_PatientId_**, **_DoctorId_**, **_DrugId_**, Date, Quantity)
 - **Contract** (**_PharmacyId_**, **_PharmaceuticalCompanyId_**, StartDate, EndDate, Text,
 Supervisor)
+
+[:arrow_up:Back to top!](#contents)
 
 ### R Diagram
 
@@ -232,6 +236,41 @@ Supervisor)
 </div>
 
 ## API
+
+### SQL Structure
+
+#### Table structure for 'patient'
+
+```SQL
+CREATE TABLE IF NOT EXISTS `patient` (
+
+    `patient_id` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+    `surname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+    `town` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+    `street_name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+    `number` int(11) NOT NULL,
+    `postalcode` int(11) NOT NULL,
+    `age` int(2) NOT NULL,
+    PRIMARY KEY (`patient_id`),
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10;
+```
+
+#### Table structure for 'doctor'
+
+```SQL
+CREATE TABLE IF NOT EXISTS `doctor` (
+
+    `doctor_id` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+    `surname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+    `specialty` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+    `experience_years` int(2) NOT NULL,
+    PRIMARY KEY (`doctor_id`),
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10;
+```
 
 ## Download
 
