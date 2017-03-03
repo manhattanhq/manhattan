@@ -15,6 +15,7 @@
 - [Download](#download)
 - [Credits](#credits)
 - [Links](#links)
+  - [Tutorials](#tutorials)
 - [Team](#team)
 - [License](#license)
 
@@ -304,6 +305,16 @@ cd manhattan
 ```
 
 ## Links
+
+### Tutorials
+
+- [Basic MySQL Tutorial](http://www.mysqltutorial.org/basic-mysql-tutorial.aspx)
+- [MySQL Functions](http://www.mysqltutorial.org/mysql-functions.aspx)
+- [Triggers in MySQL](http://www.mysqltutorial.org/create-the-first-trigger-in-mysql.aspx)
+- [Views in MySQL](http://www.mysqltutorial.org/create-sql-views-mysql.aspx)
+- [Constraints in MySQL](http://www.w3resource.com/mysql/creating-table-advance/constraint.php)
+
+[:arrow_up:Back to top!](#contents)
 
 ## Credits
 
