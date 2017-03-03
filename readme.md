@@ -12,6 +12,8 @@
   - [R Model](#r-model)
 - [API](#api)
 - [Download](#download)
+- [Credits](#credits)
+- [Links](#links)
 - [Team](#team)
 - [License](#license)
 
@@ -252,24 +254,26 @@ CREATE TABLE IF NOT EXISTS `patient` (
     `number` int(11) NOT NULL,
     `postalcode` int(11) NOT NULL,
     `age` int(2) NOT NULL,
-    PRIMARY KEY (`patient_id`),
+    PRIMARY KEY (`patient_id`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10;
 ```
 
-#### Table structure for 'doctor'
+#### Table structure for '<pre>
+
+</pre>'
 
 ```SQL
-CREATE TABLE IF NOT EXISTS `doctor` (
+CREATE TABLE IF NOT EXISTS `prescription` (
 
-    `doctor_id` int(11) NOT NULL AUTO_INCREMENT,
-    `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-    `surname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-    `specialty` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-    `experience_years` int(2) NOT NULL,
-    PRIMARY KEY (`doctor_id`),
+    `patient_id` int(11) NOT NULL,
+    `doctor_id` int(11) NOT NULL,
+    `drug_id` int(11) NOT NULL,
+    `date` date NOT NULL,
+    `quantity` int(10) NOT NULL,
+    PRIMARY KEY (`patient_id`, `doctor_id`, `drug_id`)
 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 ```
 
 ## Download
@@ -282,6 +286,10 @@ git clone https://github.com/manhattanhq/manhattan.git
 # navigate to the project directory
 cd manhattan
 ```
+
+## Links
+
+## Credits
 
 ## Team
 
