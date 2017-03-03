@@ -11,7 +11,7 @@
   - [ER Model](#er-model)
   - [R Model](#r-model)
 - [API](#api)
-  - [SQL Structure](sql-structure)
+  - [SQL Structure](#sql-structure)
 - [Download](#download)
 - [Credits](#credits)
 - [Links](#links)
