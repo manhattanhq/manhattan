@@ -23,9 +23,11 @@
 
 ### Entities
 
+For our Entities-Relations Model, we consider all the below described entities as **strong**.
+
 #### PATIENT
 
-> Patients receive drugs prescriptions by doctors.
+> Patients receive drug prescriptions by doctors.
 
 Each patient is uniquely identified by a **PatientID** -- **PRIMARY KEY**:key:, and is characterized by the following **simple**, as well as **composite**, **attributes**:
 
@@ -39,9 +41,9 @@ Each patient is uniquely identified by a **PatientID** -- **PRIMARY KEY**:key:, 
   - Number
   - PostalCode
 
-### DOCTOR
+#### DOCTOR
 
-> Doctors prescribe drugs to patient they monitor.
+> Doctors prescribe drugs and monitor patients.
 
 Each doctor is uniquely identified by a **DoctorID** -- **PRIMARY KEY**:key:, and is characterized by the following **simple**, as well as **composite**, **attributes**:
 
@@ -51,7 +53,7 @@ Each doctor is uniquely identified by a **DoctorID** -- **PRIMARY KEY**:key:, an
   - FirstName
   - LastName
 
-### PHARMACEUTICAL COMPANY
+#### PHARMACEUTICAL COMPANY
 
 > Pharmaceutical companies provide pharmacies with drugs.
 
@@ -60,16 +62,20 @@ Each pharmaceutical company is uniquely identified by a **PharmaceuticalCompanyI
 - **Name**
 - **PhoneNumber**
 
-### DRUG
+In addition, we consider that each pharmaceutical company has a unique name and a unique phone number, thus making the **Name** attribute a **Candidate Key** and the **PhoneNumber** a **Single-valued** (not **Multivalued**) attribute.
 
-> Drugs are being produced by pharmaceutical companies.
+#### DRUG
+
+> Drugs are produced by pharmaceutical companies.
 
 Each drug is uniquely identified by a **DrugId** -- **PRIMARY KEY**:key:, and is characterized by the following **simple** **attributes**:
 
 - **Name**
 - **Formula**
 
-### PHARMACY
+Additionally, we consider as unique the commercial name of each drug, thus making the **Name** attribute a **Candidate Key**.
+
+#### PHARMACY
 
 > Prescriptions-R-X pharmacies.
 
@@ -82,13 +88,17 @@ Each pharmacy is uniquely identified by a **PharmacyID** -- **PRIMARY KEY**:key:
   - Number
   - PostalCode
 
+Again, we considering as unique the name of each pharmacy, making the **Name** attribute a **Candidate Key**.
+
 ### Relations
 
-#### SEE BY
+#### SEEN BY
 
 > Connects a patient with a corresponding doctor.
 
 Each patient can be seen by **at most one** doctor, while each doctor can see **any number** patients.
+
+Also, each patient has a doctor monitoring him, while a each doctor has **at least one** patient to monitor.
 
 - Mapping Cardinality
   - **1:N**
@@ -98,11 +108,13 @@ Each patient can be seen by **at most one** doctor, while each doctor can see **
 
 #### SELL
 
-> Connects a pharmacy with its for sale drugs.
+> Connects a pharmacy with its selling drugs.
 
 Each pharmacy can have for sale **any number** of drugs, while a drug can be
 available at **any number** of pharmacies. Also, the relation holds a **Price**
 attribute, representing the selling price of a drug.
+
+Additionally, we consider that each pharmacy can have drugs for sale, while a drug can be **unavailable** at all pharmacies.
 
 - Mapping Cardinality
   - **N:M**
@@ -115,10 +127,12 @@ attribute, representing the selling price of a drug.
 
 #### MAKE
 
-> Connects a pharmaceutical company its producing drugs.
+> Connects a drug with the pharmaceutical company producing it.
 
-Each drug can be produced  by **at most one** pharmaceutical company, while a
+Each drug can be produced by **at most one** pharmaceutical company, while a
 pharmaceutical company can be producing **any number** of drugs.
+
+Additionally, each drug can be produced by a pharmaceutical company, while a pharmaceutical company might **not be producing** some drugs out of the totally registered ones.
 
 - Mapping Cardinality
   - **1:N**
@@ -131,13 +145,15 @@ pharmaceutical company can be producing **any number** of drugs.
 
 > Connects a patient with a doctor and a prescribed drug.
 
-This is a **ternary relation**, where a patient can receive a prescription for
+This is a **ternary relationship**, where a patient can receive a prescription for
 **any number** of drugs by **any number** of doctors, a doctor can prescribe
 **any number** of drugs to **any number** of patients, and a drug can be
 prescribed to **any number** of patients by **any number** of doctors. Also,
 the relation holds a **Date** attribute, representing the prescription date,
 and a **Quantity** attribute, representing the quantity of the prescribed
 drug.
+
+Additionally, for a patient might not exist a corresponding prescription, and a doctor might not have prescribed a prescription for a corresponding patient, while a drug might not have been prescribed by a doctor for a patient.
 
 - Mapping Cardinality
   - **N:M:K**
@@ -149,13 +165,17 @@ drug.
   - **Date**
   - **Quality**
 
+Finally, if a doctor prescribes the same drug to the same patient, more than one time, then the **last** prescription is the one registered in our database.
+
 #### CONTRACT
 
-> Connects a Pharmaceutical company with a pharmacy.
+> Connects a pharmaceutical company with a pharmacy.
 
-A pharmacy can be contract with **any number** of pharmaceutical companies,
+A pharmacy can be in contract with **any number** of pharmaceutical companies,
 while a pharmaceutical company can be in contract with **any number** of
-pharmacies. Also, the relations holds a **StartDate** attribute and a **EndDate** attribute,representing the contract initialization and termination date accordingly, a **Text** attribute, representing the text upon which the contract was agreed and signed by both counterparts, and a **Supervisor** attribute, representing the contract supervisor.
+pharmacies. Also, the relations holds a **StartDate** and an **EndDate** attribute, representing the contract initialization and termination dates accordingly, a **Text** attribute, representing the text upon which the contract was agreed and signed by both counterparts, and a **Supervisor** attribute, representing the contract supervisor.
+
+We consider that each pharmacy is in contract with a pharmaceutical company, to supply itself with drugs, while each registered pharmaceutical company is in contract with one of the pharmacies.
 
 - Mapping Cardinality
   - **N:M**
@@ -168,6 +188,8 @@ pharmacies. Also, the relations holds a **StartDate** attribute and a **EndDate*
   - **Text**
   - **Supervisor**
 
+Finally, if a pharmacy signs a contract with the same company, more than one time, then the last contract is the one registered in our database.
+
 ### ER Diagram
 
 <div align="center">
@@ -177,6 +199,29 @@ pharmacies. Also, the relations holds a **StartDate** attribute and a **EndDate*
 </div>
 
 ## R Model
+
+Each strong entity is immediately converted to a relation.
+
+Keys are noted in a **bold** & _tilted_ fashion.
+
+Also, we replaced the composite attribute **Address** with the simple attributes composing it.
+
+#### Strong Entities to Relations
+
+- **Patient** (**_PatientId_**, FirstName, LastName, Town, StreetName, Number, PostalCode, Age)
+- **Doctor** (**_DoctorId_**, FirstName, LastName, Specialty, ExperienceYears)
+- **PharmaceuticalCompany** (**_PharmaceuticalCompanyId_**, Name, PhoneNumber)
+- **Drug** (**_Drug_**, Name, Formula)
+- **Pharmacy** (**_PharmacyId_**, Name, Town, StreetName, Number, PostalCode, PhoneNumber)
+
+#### Relation Sets
+
+- **SeenBy** (**_PatientId_**, DoctorId)
+- **Sell** (**_PharmacyId_**, **_DrugId_**, Price)
+- **Make** (**_DrugId_**, PharmaceuticalCompanyId)
+- **Prescription** (**_PatientId_**, **_DoctorId_**, **_DrugId_**, Date, Quantity)
+- **Contract** (**_PharmacyId_**, **_PharmaceuticalCompanyId_**, StartDate, EndDate, Text,
+Supervisor)
 
 ### R Diagram
 
@@ -206,7 +251,6 @@ cd manhattan
 [![George Baxopoulos](https://avatars.githubusercontent.com/u/)](https://github.com/georgebax) | [![Konstantinos Mitropoulos](https://avatars.githubusercontent.com/u/)](https://github.com/tsikos7) | [![Klaus Sinani](https://avatars.githubusercontent.com/u/)](https://github.com/klauscfhq)
 --- | --- | ---
 [George Baxopoulos](http://github.com/georgebax) | [Konstantinos Mitropoulos](https://github.com/tsikos7) | [Klaus Sinani](https://github.com/klauscfhq)
-
 ## License
 
 MIT © [George Baxopoulos](https://github.com/georgebax), [Konstantinos Mitropoulos](https://github.com/tsikos7) & [Klaus Sinani](https://github.com/klauscfhq)
