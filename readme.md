@@ -259,9 +259,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10;
 ```
 
-#### Table structure for '<pre>
-
-</pre>'
+#### Table structure for 'prescription'
 
 ```SQL
 CREATE TABLE IF NOT EXISTS `prescription` (
