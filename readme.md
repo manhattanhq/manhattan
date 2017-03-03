@@ -11,6 +11,7 @@
   - [ER Model](#er-model)
   - [R Model](#r-model)
 - [API](#api)
+  - [SQL Structure](sql-structure)
 - [Download](#download)
 - [Credits](#credits)
 - [Links](#links)
@@ -241,38 +242,55 @@ Supervisor)
 
 ### SQL Structure
 
-#### Table structure for 'patient'
+Some sample structure designs pulled from the latest main Manhattan SQL source.
+
+### Patient Table Design
+
+#### Table structure for `patient`
 
 ```SQL
-CREATE TABLE IF NOT EXISTS `patient` (
-
-    `patient_id` int(11) NOT NULL AUTO_INCREMENT,
-    `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-    `surname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-    `town` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-    `street_name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-    `number` int(11) NOT NULL,
-    `postalcode` int(11) NOT NULL,
-    `age` int(2) NOT NULL,
-    PRIMARY KEY (`patient_id`)
-
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10;
+CREATE TABLE `patient` (
+  `patient_id` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `surname` varchar(20) NOT NULL,
+  `town` varchar(20) NOT NULL,
+  `street_name` varchar(20) NOT NULL,
+  `number` int(11) NOT NULL,
+  `postalcode` int(11) NOT NULL,
+  `age` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-#### Table structure for 'prescription'
+#### Indexes for table `patient`
 
 ```SQL
-CREATE TABLE IF NOT EXISTS `prescription` (
-
-    `patient_id` int(11) NOT NULL,
-    `doctor_id` int(11) NOT NULL,
-    `drug_id` int(11) NOT NULL,
-    `date` date NOT NULL,
-    `quantity` int(10) NOT NULL,
-    PRIMARY KEY (`patient_id`, `doctor_id`, `drug_id`)
-
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+ALTER TABLE `patient`
+  ADD PRIMARY KEY (`patient_id`);
 ```
+
+### Prescription Table Design
+
+
+#### Table structure for `prescription`
+
+```SQL
+CREATE TABLE `prescription` (
+  `patient_id` int(11) NOT NULL,
+  `doctor_id` int(11) NOT NULL,
+  `drug_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `quantity` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
+#### Indexes for table `prescription`
+
+```SQL
+ALTER TABLE `prescription`
+  ADD PRIMARY KEY (`patient_id`,`doctor_id`,`drug_id`);
+```
+
+[:arrow_up:Back to top!](#contents)
 
 ## Download
 
