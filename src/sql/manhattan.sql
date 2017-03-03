@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
 		`number` int(11) NOT NULL,
 		`postalcode` int(11) NOT NULL,
 		`age` int(2) NOT NULL,
-		PRIMARY KEY (`patient_id`),
+		PRIMARY KEY (`patient_id`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10;
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `doctor` (
 		`surname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
 		`specialty` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
 		`experience_years` int(2) NOT NULL,
-		PRIMARY KEY (`doctor_id`),
+		PRIMARY KEY (`doctor_id`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10;
 
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `pharmaceutical_company` (
 		`phone_number` int(15) NOT NULL,
 		PRIMARY KEY (`pharmaceutical_company_id`),
 		UNIQUE KEY `name` (`name`),
-		UNIQUE KEY `phone_number` (`phone_number`),
+		UNIQUE KEY `phone_number` (`phone_number`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10;
 
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `drug` (
 		`name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
 		`formula` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
 		PRIMARY KEY (`drug_id`),
-		UNIQUE KEY `name` (`name`),
+		UNIQUE KEY `name` (`name`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10;
 
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `pharmacy` (
 		`postalcode` int(11) NOT NULL,
 		`phone_number` int(15) NOT NULL,
 		PRIMARY KEY (`pharmacy_id`),
-		UNIQUE KEY `name` (`name`),
+		UNIQUE KEY `name` (`name`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10;
 
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `seen_by` (
 		`patient_id` int(11) NOT NULL,
 		`doctor_id` int(11) NOT NULL,
 		PRIMARY KEY (`patient_id`),
-		KEY `doctor_id` (`doctor_id`),
+		KEY `doctor_id` (`doctor_id`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `sell` (
 		`pharmacy_id` int(11) NOT NULL,
 		`drug_id` int(11) NOT NULL,
 		`price` int(10) NOT NULL,
-		PRIMARY KEY (`pharmacy_id`, `drug_id`),
+		PRIMARY KEY (`pharmacy_id`, `drug_id`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `make` (
 		`drug_id` int(11) NOT NULL,
 		`pharmaceutical_company_id` int(11) NOT NULL,
 		PRIMARY KEY (`drug_id`),
-		KEY `pharmaceutical_company_id` (`pharmaceutical_company_id`),
+		KEY `pharmaceutical_company_id` (`pharmaceutical_company_id`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `prescription` (
 		`drug_id` int(11) NOT NULL,
 		`date` date NOT NULL,
 		`quantity` int(10) NOT NULL,
-		PRIMARY KEY (`patient_id`, `doctor_id`, `drug_id`),
+		PRIMARY KEY (`patient_id`, `doctor_id`, `drug_id`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -150,6 +150,6 @@ CREATE TABLE IF NOT EXISTS `contract` (
 		`text` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
 		`supervisor` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
 		PRIMARY KEY (`pharmacy_id`, `pharmaceutical_company_id`),
-		KEY `drug_id` (`drug_id`),
+		KEY `drug_id` (`drug_id`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
