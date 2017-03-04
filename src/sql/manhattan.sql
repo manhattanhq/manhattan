@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2017 at 11:44 PM
+-- Generation Time: Mar 04, 2017 at 03:48 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Manhattan`
+-- Database: `TEST14`
 --
 
 -- --------------------------------------------------------
@@ -29,7 +29,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `contract` (
   `pharmacy_id` int(11) NOT NULL,
   `pharmaceutical_company_id` int(11) NOT NULL,
-  `drug_id` int(11) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `text` varchar(50) NOT NULL,
@@ -37,28 +36,42 @@ CREATE TABLE `contract` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Stand-in structure for view `contracts_initialized_in_2016`
+-- Triggers `contract`
 --
-CREATE TABLE IF NOT EXISTS `contracts_initialized_in_2016` (
-    `pharmacy_id` int(11) NOT NULL,
-    `pharmaceutical_company_id` int(11) NOT NULL,
-    `drug_id` int(11) NOT NULL,
-    `text` varchar(50) NOT NULL,
-    `supervisor` varchar(20) NOT NULL,
-    `start_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DELIMITER $$
+CREATE TRIGGER `contract_date_check` AFTER INSERT ON `contract` FOR EACH ROW BEGIN
+SET@start_date=NOW();
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `contracts_initialized_in_2016`
+-- (See below for the actual view)
 --
-CREATE TABLE IF NOT EXISTS `contracts_terminated_in_2016` (
-    `pharmacy_id` int(11) NOT NULL,
-    `pharmaceutical_company_id` int(11) NOT NULL,
-    `drug_id` int(11) NOT NULL,
-    `text` varchar(50) NOT NULL,
-    `supervisor` varchar(20) NOT NULL,
-    `end_date` date NOT NULL
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `contracts_initialized_in_2016` (
+`pharmacy_id` int(11)
+,`pharmaceutical_company_id` int(11)
+,`text` varchar(50)
+,`supervisor` varchar(20)
+,`start_date` date
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `contracts_terminated_in_2016`
+-- (See below for the actual view)
+--
+CREATE TABLE `contracts_terminated_in_2016` (
+`pharmacy_id` int(11)
+,`pharmaceutical_company_id` int(11)
+,`text` varchar(50)
+,`supervisor` varchar(20)
+,`end_date` date
+);
 
 -- --------------------------------------------------------
 
@@ -74,6 +87,14 @@ CREATE TABLE `doctor` (
   `experience_years` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Triggers `doctor`
+--
+DELIMITER $$
+CREATE TRIGGER `xp_years_check` BEFORE INSERT ON `doctor` FOR EACH ROW IF NEW.experience_years < 0 THEN SET NEW.experience_years = 0; END IF
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -83,7 +104,8 @@ CREATE TABLE `doctor` (
 CREATE TABLE `drug` (
   `drug_id` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
-  `formula` varchar(30) NOT NULL
+  `formula` varchar(30) NOT NULL,
+  `pharmaceutical_company_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -111,8 +133,17 @@ CREATE TABLE `patient` (
   `street_name` varchar(20) NOT NULL,
   `number` int(11) NOT NULL,
   `postalcode` int(11) NOT NULL,
-  `age` int(2) NOT NULL
+  `age` int(2) NOT NULL,
+  `doctor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Triggers `patient`
+--
+DELIMITER $$
+CREATE TRIGGER `age_check` BEFORE INSERT ON `patient` FOR EACH ROW IF NEW.age < 0 THEN SET NEW.age = 0; END IF
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -156,6 +187,20 @@ CREATE TABLE `prescription` (
   `quantity` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Triggers `prescription`
+--
+DELIMITER $$
+CREATE TRIGGER `date` AFTER INSERT ON `prescription` FOR EACH ROW BEGIN
+SET@date=NOW();
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `quantity_check` BEFORE INSERT ON `prescription` FOR EACH ROW IF NEW.quantity < 0 THEN SET NEW.quantity = 0; END IF
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -179,6 +224,24 @@ CREATE TABLE `sell` (
   `price` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Structure for view `contracts_initialized_in_2016`
+--
+DROP TABLE IF EXISTS `contracts_initialized_in_2016`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW `test14`.`contracts_initialized_in_2016`  AS  select `test14`.`contract`.`pharmacy_id` AS `pharmacy_id`,`test14`.`contract`.`pharmaceutical_company_id` AS `pharmaceutical_company_id`,`test14`.`contract`.`text` AS `text`,`test14`.`contract`.`supervisor` AS `supervisor`,`test14`.`contract`.`start_date` AS `start_date` from `test14`.`contract` where (`test14`.`contract`.`start_date` between '2016-01-01' and '2016-12-31') ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `contracts_terminated_in_2016`
+--
+DROP TABLE IF EXISTS `contracts_terminated_in_2016`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW `test14`.`contracts_terminated_in_2016`  AS  select `test14`.`contract`.`pharmacy_id` AS `pharmacy_id`,`test14`.`contract`.`pharmaceutical_company_id` AS `pharmaceutical_company_id`,`test14`.`contract`.`text` AS `text`,`test14`.`contract`.`supervisor` AS `supervisor`,`test14`.`contract`.`end_date` AS `end_date` from `test14`.`contract` where (`test14`.`contract`.`end_date` between '2016-01-01' and '2016-12-31') ;
+
 --
 -- Indexes for dumped tables
 --
@@ -188,21 +251,8 @@ CREATE TABLE `sell` (
 --
 ALTER TABLE `contract`
   ADD PRIMARY KEY (`pharmacy_id`,`pharmaceutical_company_id`),
-  ADD KEY `drug_id` (`drug_id`);
-
---
--- Indexes for table `contracts_initialized_in_2016`
---
-ALTER TABLE `contracts_initialized_in_2016`
-  ADD PRIMARY KEY (`pharmacy_id`,`pharmaceutical_company_id`),
-  ADD KEY `drug_id` (`drug_id`);
-
---
--- Indexes for table `contracts_terminated_in_2016`
---
-ALTER TABLE `contracts_terminated_in_2016`
-  ADD PRIMARY KEY (`pharmacy_id`,`pharmaceutical_company_id`),
-  ADD KEY `drug_id` (`drug_id`);
+  ADD KEY `pharmacy_id` (`pharmacy_id`),
+  ADD KEY `pharmaceutical_company_id` (`pharmaceutical_company_id`);
 
 --
 -- Indexes for table `doctor`
@@ -215,7 +265,7 @@ ALTER TABLE `doctor`
 --
 ALTER TABLE `drug`
   ADD PRIMARY KEY (`drug_id`),
-  ADD UNIQUE KEY `name` (`name`);
+  ADD KEY `pharmaceutical_company_id` (`pharmaceutical_company_id`);
 
 --
 -- Indexes for table `make`
@@ -228,28 +278,29 @@ ALTER TABLE `make`
 -- Indexes for table `patient`
 --
 ALTER TABLE `patient`
-  ADD PRIMARY KEY (`patient_id`);
+  ADD PRIMARY KEY (`patient_id`),
+  ADD KEY `doctor_id` (`doctor_id`);
 
 --
 -- Indexes for table `pharmaceutical_company`
 --
 ALTER TABLE `pharmaceutical_company`
-  ADD PRIMARY KEY (`pharmaceutical_company_id`),
-  ADD UNIQUE KEY `name` (`name`),
-  ADD UNIQUE KEY `phone_number` (`phone_number`);
+  ADD PRIMARY KEY (`pharmaceutical_company_id`);
 
 --
 -- Indexes for table `pharmacy`
 --
 ALTER TABLE `pharmacy`
-  ADD PRIMARY KEY (`pharmacy_id`),
-  ADD UNIQUE KEY `name` (`name`);
+  ADD PRIMARY KEY (`pharmacy_id`);
 
 --
 -- Indexes for table `prescription`
 --
 ALTER TABLE `prescription`
-  ADD PRIMARY KEY (`patient_id`,`doctor_id`,`drug_id`);
+  ADD PRIMARY KEY (`patient_id`,`doctor_id`,`drug_id`),
+  ADD KEY `patient_id` (`patient_id`),
+  ADD KEY `doctor_id` (`doctor_id`),
+  ADD KEY `drug_id` (`drug_id`);
 
 --
 -- Indexes for table `seen_by`
@@ -262,115 +313,38 @@ ALTER TABLE `seen_by`
 -- Indexes for table `sell`
 --
 ALTER TABLE `sell`
-  ADD PRIMARY KEY (`pharmacy_id`,`drug_id`);
+  ADD PRIMARY KEY (`pharmacy_id`,`drug_id`),
+  ADD KEY `pharmacy_id` (`pharmacy_id`),
+  ADD KEY `drug_id` (`drug_id`);
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `patient`
---
-ALTER TABLE `patient`
-  ADD CONSTRAINT `pat1` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`doctor_id`) ON DELETE SET NULL ON UPDATE NO ACTION;
-
---
--- Constraints for table `drug`
---
-ALTER TABLE `drug`
-  ADD CONSTRAINT `dru1` FOREIGN KEY (`pharmaceutical_company_id`) REFERENCES `pharmaceutical_company` (`pharmaceutical_company_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-
---
 -- Constraints for table `contract`
 --
 ALTER TABLE `contract`
   ADD CONSTRAINT `con1` FOREIGN KEY (`pharmacy_id`) REFERENCES `pharmacy` (`pharmacy_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-  ADD CONSTRAINT `con2` FOREIGN KEY (`pharmaceutical_company_id`) REFERENCES `pharmaceutical_company` (`pharmaceutical_company_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Constraints for table `sell`
+-- Constraints for table `patient`
 --
-ALTER TABLE `sell`
-  ADD CONSTRAINT `sel1` FOREIGN KEY (`pharmacy_id`) REFERENCES `pharmacy` (`pharmacy_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-  ADD CONSTRAINT `sel2` FOREIGN KEY (`drug_id`) REFERENCES `drug` (`drug_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE `patient`
+  ADD CONSTRAINT `pat1` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`doctor_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `prescription`
 --
 ALTER TABLE `prescription`
   ADD CONSTRAINT `pre1` FOREIGN KEY (`patient_id`) REFERENCES `pharmacy` (`pharmacy_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-  ADD CONSTRAINT `pre2` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`doctor_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-  ADD CONSTRAINT `pre3` FOREIGN KEY (`drug_id`) REFERENCES `drug` (`drug_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Structure for view `contracts_initialized_in_2016`
+-- Constraints for table `sell`
 --
-DROP TABLE IF EXISTS `contracts_initialized_in_2016`;
+ALTER TABLE `sell`
+  ADD CONSTRAINT `sel1` FOREIGN KEY (`pharmacy_id`) REFERENCES `pharmacy` (`pharmacy_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW `contracts_initialized_in_2016` AS select `contract`.`pharmacy_id` AS `pharmacy_id`,`contract`.`pharmaceutical_company_id` AS `pharmaceutical_company_id`,`contract`.`text` AS `text`,`contract`.`supervisor` AS `supervisor`,`contract`.`start_date` AS `start_date` from `contract` where (`contract`.`start_date` between '2016-01-01' and '2016-12-31');
-
---
--- Structure for view `contracts_terminated_in_2016`
---
-DROP TABLE IF EXISTS `contracts_terminated_in_2016`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW `contracts_terminated_in_2016` AS select `contract`.`pharmacy_id` AS `pharmacy_id`,`contract`.`pharmaceutical_company_id` AS `pharmaceutical_company_id`,`contract`.`text` AS `text`,`contract`.`supervisor` AS `supervisor`,`contract`.`end_date` AS `end_date` from `contract` where (`contract`.`end_date` between '2016-01-01' and '2016-12-31');
-
---
--- Triggers `age_check`
---
-DROP TRIGGER IF EXISTS `age_check`;
-DELIMITER //
- CREATE TRIGGER `agecheck` BEFORE INSERT ON `patient`
-  FOR EACH ROW IF NEW.age < 0 THEN SET NEW.age = 0; END IF;
-//
-DELIMITER ;
-
---
--- Triggers `quantity_check`
---
-DROP TRIGGER IF EXISTS `quantity_check`;
-DELIMITER //
- CREATE TRIGGER `quantity_check` BEFORE INSERT ON `prescription`
-  FOR EACH ROW IF NEW.quantity < 0 THEN SET NEW.quantity = 0; END IF;
-//
-DELIMITER ;
-
---
--- Triggers `xp_years_check`
---
-DROP TRIGGER IF EXISTS `xp_years_check`;
-DELIMITER //
- CREATE TRIGGER `xp_years_check` BEFORE INSERT ON `doctor`
-  FOR EACH ROW IF NEW.experience_years < 0 THEN SET NEW.experience_years = 0; END IF;
-//
-DELIMITER ;
-
---
--- Triggers `prescription_date_check`
---
-DROP TRIGGER IF EXISTS `prescription_date_check`;
-DELIMITER //
-CREATE TRIGGER `date` AFTER INSERT ON `prescription`
- FOR EACH ROW BEGIN
-SET@date=NOW();
-END
-//
-DELIMITER ;
-
---
--- Triggers `contract_date_check`
---
-DROP TRIGGER IF EXISTS `contract_date_check`;
-DELIMITER //
-CREATE TRIGGER `contract_date_check` AFTER INSERT ON `contract`
- FOR EACH ROW BEGIN
-SET@start_date=NOW();
-END
-//
-DELIMITER ;
-
-  -- --------------------------------------------------------
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
