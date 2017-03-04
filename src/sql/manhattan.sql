@@ -36,6 +36,30 @@ CREATE TABLE `contract` (
   `supervisor` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Stand-in structure for view `contracts_initialized_in_2016`
+--
+CREATE TABLE IF NOT EXISTS `contracts_initialized_in_2016` (
+    `pharmacy_id` int(11) NOT NULL,
+    `pharmaceutical_company_id` int(11) NOT NULL,
+    `drug_id` int(11) NOT NULL,
+    `text` varchar(50) NOT NULL,
+    `supervisor` varchar(20) NOT NULL,
+    `start_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Stand-in structure for view `contracts_initialized_in_2016`
+--
+CREATE TABLE IF NOT EXISTS `contracts_terminated_in_2016` (
+    `pharmacy_id` int(11) NOT NULL,
+    `pharmaceutical_company_id` int(11) NOT NULL,
+    `drug_id` int(11) NOT NULL,
+    `text` varchar(50) NOT NULL,
+    `supervisor` varchar(20) NOT NULL,
+    `end_date` date NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------
 
 --
@@ -167,6 +191,20 @@ ALTER TABLE `contract`
   ADD KEY `drug_id` (`drug_id`);
 
 --
+-- Indexes for table `contracts_initialized_in_2016`
+--
+ALTER TABLE `contracts_initialized_in_2016`
+  ADD PRIMARY KEY (`pharmacy_id`,`pharmaceutical_company_id`),
+  ADD KEY `drug_id` (`drug_id`);
+
+--
+-- Indexes for table `contracts_terminated_in_2016`
+--
+ALTER TABLE `contracts_terminated_in_2016`
+  ADD PRIMARY KEY (`pharmacy_id`,`pharmaceutical_company_id`),
+  ADD KEY `drug_id` (`drug_id`);
+
+--
 -- Indexes for table `doctor`
 --
 ALTER TABLE `doctor`
@@ -277,6 +315,60 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW
 DROP TABLE IF EXISTS `contracts_terminated_in_2016`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW `contracts_terminated_in_2016` AS select `contract`.`pharmacy_id` AS `pharmacy_id`,`contract`.`pharmaceutical_company_id` AS `pharmaceutical_company_id`,`contract`.`text` AS `text`,`contract`.`supervisor` AS `supervisor`,`contract`.`end_date` AS `end_date` from `contract` where (`contract`.`end_date` between '2016-01-01' and '2016-12-31');
+
+--
+-- Triggers `age_check`
+--
+DROP TRIGGER IF EXISTS `age_check`;
+DELIMITER //
+ CREATE TRIGGER `agecheck` BEFORE INSERT ON `patient`
+  FOR EACH ROW IF NEW.age < 0 THEN SET NEW.age = 0; END IF;
+//
+DELIMITER ;
+
+--
+-- Triggers `quantity_check`
+--
+DROP TRIGGER IF EXISTS `quantity_check`;
+DELIMITER //
+ CREATE TRIGGER `quantity_check` BEFORE INSERT ON `prescription`
+  FOR EACH ROW IF NEW.quantity < 0 THEN SET NEW.quantity = 0; END IF;
+//
+DELIMITER ;
+
+--
+-- Triggers `xp_years_check`
+--
+DROP TRIGGER IF EXISTS `xp_years_check`;
+DELIMITER //
+ CREATE TRIGGER `xp_years_check` BEFORE INSERT ON `doctor`
+  FOR EACH ROW IF NEW.experience_years < 0 THEN SET NEW.experience_years = 0; END IF;
+//
+DELIMITER ;
+
+--
+-- Triggers `prescription_date_check`
+--
+DROP TRIGGER IF EXISTS `prescription_date_check`;
+DELIMITER //
+CREATE TRIGGER `date` AFTER INSERT ON `prescription`
+ FOR EACH ROW BEGIN
+SET@date=NOW();
+END
+//
+DELIMITER ;
+
+--
+-- Triggers `contract_date_check`
+--
+DROP TRIGGER IF EXISTS `contract_date_check`;
+DELIMITER //
+CREATE TRIGGER `contract_date_check` AFTER INSERT ON `contract`
+ FOR EACH ROW BEGIN
+SET@start_date=NOW();
+END
+//
+DELIMITER ;
 
   -- --------------------------------------------------------
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
