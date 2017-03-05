@@ -1,3 +1,8 @@
+
+--
+-- Dumping data to tables
+--
+
 --
 -- Dumping data for table `doctor`
 --
@@ -13,6 +18,16 @@ INSERT INTO `doctor` (`doctor_id`, `name`, `surname`, `specialty`, `experience_y
 (8, 'Gregorius', 'Afzal-khan', 'Sexologist', 20),
 (9, 'Willie', 'Stanton', 'Radiologist', 11),
 (10, 'Frankie', 'Gabor', 'Parasitologist', 5);
+(11, 'Donald', 'Duck', 'Psychiatrist', 13);
+(12, 'Michael', 'Heck', 'Urologist', 22);
+(13, 'Andre', 'Young', 'Orthopaedist', 32);
+(14, 'Romain', 'Blanc', 'Dermatologist', 10);
+(15, 'DeShawn', 'Jackson', 'Sexologist', 17);
+(16, 'Kimi', 'Raikkonen', 'Psychiatrist', 16);
+(17, 'Ari', 'Vatanen', 'Cardiologist', 25);
+(18, 'Rakim', 'Mayers', 'Radiologist', 6);
+(19, 'Jarno', 'Trulli', 'Orthopaedist', 9);
+(20, 'Calvin', 'Broadus', 'Pneumonologist', 20);
 
 --
 -- Dumping data for table `patient`
@@ -32,6 +47,12 @@ INSERT INTO `patient` (`patient_id`, `name`, `surname`, `town`, `street_name`, `
 (11, 'Carlton', 'Chastain', 'Newark', 'Hilltop Haven Drive', 2313, 07102, 32, 7),
 (12, 'Jerome', 'Melton', 'Farmingdale', 'Stanley Avenue', 3813, 11735, 77, 1),
 (13, 'Sophia', 'Petersen', 'Sammamish', 'Stockert Hollow Road', 3318, 98053, 71, 3);
+(14, 'Fernando', 'Soldado', 'New York', 'Wall Street', 2534, 19123, 46, 17);
+(15, 'Lloyd', 'Banks', 'Compton', '2nd Street', 1233, 93425, 25, 16);
+(16, 'Richard', 'Ferdinand', 'Synecdoche', 'King George Avenue', 662, 92415, 40, 20);
+(17, 'Viggo', 'Geller', 'Los Angeles', 'Canis Heights Drive', 1230, 90071, 56, 18);
+(18, 'Amber', 'Lancaster', 'Detroit', 'Main Avenue', 1532, 48252, 34, 15);
+
 
 --
 -- Dumping data for table `pharmacy`
@@ -48,6 +69,10 @@ INSERT INTO `pharmacy` (`pharmacy_id`, `name`, `town`, `street_name`, `number`, 
 (8, 'Health Mart', 'Pittsburgh', 'Pine Street', 2387, 15212, 2567795407),
 (9, 'Ingles Markets', 'Norfolk', 'Allison Avenue', 2549, 23510, 2812377851),
 (10, 'Lifechek', 'Pittsburgh', 'Pine Street', 2350, 15212, 8315325671);
+(11, 'Nature Store', 'Los Angeles', 'Canis Heights Drive', 250, 90071, 2814928491);
+(12, 'Health Experts', 'Beverly Hills', 'Hollywood Avenue', 1242, 90210, 2914031829);
+(13, 'Pharmalife', 'London', 'Beckham Street', 1125, 24501, 4149401922);
+(14, 'Bambees', 'Chicago', 'MJ Street', 2323, 60648, 4258310529);
 
 --
 -- Dumping data for table `pharmaceutical_company`
@@ -64,13 +89,16 @@ INSERT INTO `pharmaceutical_company` (`pharmaceutical_company_id`, `name`, `phon
 (8, 'Narcos', 3112248438),
 (9, 'Medellin', 9635224896),
 (10, 'Pocuocos', 1336924896);
+(11, 'Dealers Co.', 1920405279);
+(12, 'Los Pollos Hermanos', 1924029104);
+(13, 'Fring Laboratories', 9652014950);
 
 --
 -- Dumping data for table `drug`
 --
 
 INSERT INTO `drug` (`drug_id`, `name`, `formula`, `pharmaceutical_company_id`) VALUES
-(1, 'Bankingsodium', 'NAHCO3', 1),
+(1, 'Bakingsodium', 'NAHCO3', 1),
 (2, 'Cocainot', 'C17H21NO4', 2),
 (3, 'Borax', 'NaBO3', 3),
 (4, 'Freon', 'CF2Cl2', 4),
@@ -103,6 +131,8 @@ INSERT INTO `contract` (`pharmacy_id`, `pharmaceutical_company_id`, `start_date`
 (2, 6, '2013-11-08' , '2016-03-23', 'Dixon'),
 (5, 4, '2014-09-02', '2016-02-02', 'Love'),
 (7, 10, '2013-03-03', '2016-02-22', 'Barnett');
+(12, 13, '2015-02-05', '2017-04-20', 'Tubbs');
+(11, 4, '2010-05-12', '2016-05-02', 'Brady');
 
 --
 -- Dumping data for table `make`
