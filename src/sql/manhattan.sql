@@ -202,7 +202,7 @@ CREATE TABLE `seen_by` (
 -- Table structure for table `sell`
 --
 
-DROP TABLE IF EXISTS `selll`;
+DROP TABLE IF EXISTS `sell`;
 CREATE TABLE `sell` (
     `pharmacy_id` int(11) NOT NULL,
     `drug_id` int(11) NOT NULL,
