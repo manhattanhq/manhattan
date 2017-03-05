@@ -331,23 +331,23 @@ INSERT INTO `drug` (`drug_id`, `name`, `formula`, `pharmaceutical_company_id`) V
 -- Dumping data for table `contract`
 --
 
-INSERT INTO `contract` (`pharmacy_id`, `pharmaceutical_company_id`, `start_date`, `end_date`, `supervisor`) VALUES
-(1, 1, '2009-04-28', '2017-06-21', 'Fischer'),
-(2, 2, '2013-10-10', '2016-12-08', 'Sanderson'),
-(3, 3, '2012-07-24', '2016-08-24', 'Herrington'),
-(4, 4, '2016-01-24', '2017-05-15', 'Miller'),
-(5, 5, '2016-08-13', '2018-04-28', 'Majors'),
-(6, 6, '2001-06-19', '2022-12-31', 'Matus'),
-(7, 7, '2017-06-03', '2026-12-08', 'Overbeck'),
-(8, 8, '2015-10-05', '2016-04-30', 'Britton'),
-(9, 9, '2009-04-28', '2019-03-08', 'Cohen'),
-(10, 10, '2016-11-08', '2029-01-18', 'Leahy'),
-(1, 5, '2016-01-08', '2016-08-01', 'Irons'),
-(2, 6, '2013-11-08' , '2016-03-23', 'Dixon'),
-(5, 4, '2014-09-02', '2016-02-02', 'Love'),
-(7, 10, '2013-03-03', '2016-02-22', 'Barnett'),
-(12, 13, '2015-02-05', '2017-04-20', 'Tubbs'),
-(11, 4, '2010-05-12', '2016-05-02', 'Brady');
+INSERT INTO `contract` (`pharmacy_id`, `pharmaceutical_company_id`, `start_date`, `end_date`, `text`, `supervisor`) VALUES
+(1, 1, '2009-04-28', '2017-06-21', 'Lorem ipsum dolor sit amet, ius ex velit munere commune', 'Fischer'),
+(2, 2, '2013-10-10', '2016-12-08', 'Vel no mandamus honestatis disputando', 'Sanderson'),
+(3, 3, '2012-07-24', '2016-08-24', 'At discere rationibus contentiones vis putent commodo pri at', 'Herrington'),
+(4, 4, '2016-01-24', '2017-05-15', 'Cu quo simul oratio molestiae', 'Miller'),
+(5, 5, '2016-08-13', '2018-04-28', 'Pro postea nemore dolores at ne vel feugait adipiscing', 'Majors'),
+(6, 6, '2001-06-19', '2022-12-31', 'Mei ei voluptua consulatu', 'Matus'),
+(7, 7, '2017-06-03', '2026-12-08', 'Eos commodo aperiri ut', 'Overbeck'),
+(8, 8, '2015-10-05', '2016-04-30', 'Id ipsum luptatum comprehensam usu', 'Britton'),
+(9, 9, '2009-04-28', '2019-03-08', 'Mea no quod nibh nec at mundi congue', 'Cohen'),
+(10, 10, '2016-11-08', '2029-01-18', 'Aperiam referrentur comprehensam cu pri', 'Leahy'),
+(1, 5, '2016-01-08', '2016-08-01', 'Vel eu quas etiam admodum id sea prima ancillae', 'Irons'),
+(2, 6, '2013-11-08' , '2016-03-23', 'Eu his consul repudiandae vix ad modus patrioque', 'Dixon'),
+(5, 4, '2014-09-02', '2016-02-02', 'Ut pri minim nihil partiendo', 'Love'),
+(7, 10, '2013-03-03', '2016-02-22', 'Mea no quod nibh rationibus contentiones vis', 'Barnett'),
+(12, 13, '2015-02-05', '2017-04-20', 'Id ipsum luptatum ei voluptua consulatu', 'Tubbs'),
+(11, 4, '2010-05-12', '2016-05-02', 'Cu quo simul oratio putent commodo pri at', 'Brady');
 
 --
 -- Dumping data for table `make`
