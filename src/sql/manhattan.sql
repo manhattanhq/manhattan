@@ -32,8 +32,8 @@ CREATE TABLE `contract` (
     `pharmaceutical_company_id` int(11) NOT NULL,
     `start_date` date NOT NULL,
     `end_date` date NOT NULL,
-    `text` varchar(50) NOT NULL,
-    `supervisor` varchar(20) NOT NULL,
+    `text` varchar(50),
+    `supervisor` varchar(20),
     PRIMARY KEY (`pharmacy_id`,`pharmaceutical_company_id`),
     KEY `pharmacy_id` (`pharmacy_id`),
     KEY `pharmaceutical_company_id` (`pharmaceutical_company_id`)
@@ -47,8 +47,8 @@ DROP TABLE IF EXISTS `contracts_initialized_in_2016`;
 CREATE TABLE `contracts_initialized_in_2016` (
     `pharmacy_id` int(11) NOT NULL,
     `pharmaceutical_company_id` int(11) NOT NULL,
-    `text` varchar(50) NOT NULL,
-    `supervisor` varchar(20) NOT NULL,
+    `text` varchar(50),
+    `supervisor` varchar(20),
     `start_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -60,8 +60,8 @@ DROP TABLE IF EXISTS `contracts_terminated_in_2016`;
 CREATE TABLE `contracts_terminated_in_2016` (
     `pharmacy_id` int(11) NOT NULL,
     `pharmaceutical_company_id` int(11) NOT NULL,
-    `text` varchar(50) NOT NULL,
-    `supervisor` varchar(20) NOT NULL,
+    `text` varchar(50),
+    `supervisor` varchar(20),
     `end_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -77,7 +77,7 @@ CREATE TABLE `doctor` (
     `name` varchar(20) NOT NULL,
     `surname` varchar(20) NOT NULL,
     `specialty` varchar(20) NOT NULL,
-    `experience_years` int(2) NOT NULL,
+    `experience_years` int(2),
     PRIMARY KEY (`doctor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -91,7 +91,7 @@ DROP TABLE IF EXISTS `drug`;
 CREATE TABLE `drug` (
     `drug_id` int(11) NOT NULL,
     `name` varchar(20) NOT NULL,
-    `formula` varchar(30) NOT NULL,
+    `formula` varchar(30),
     `pharmaceutical_company_id` int(11) NOT NULL,
     PRIMARY KEY (`drug_id`),
     KEY `pharmaceutical_company_id` (`pharmaceutical_company_id`)
@@ -122,9 +122,9 @@ CREATE TABLE `patient` (
     `name` varchar(20) NOT NULL,
     `surname` varchar(20) NOT NULL,
     `town` varchar(20) NOT NULL,
-    `street_name` varchar(20) NOT NULL,
-    `number` int(11) NOT NULL,
-    `postalcode` int(11) NOT NULL,
+    `street_name` varchar(20),
+    `number` int(11),
+    `postalcode` int(11),
     `age` int(2) NOT NULL,
     `doctor_id` int(11) NOT NULL,
     PRIMARY KEY (`patient_id`),
@@ -141,7 +141,7 @@ DROP TABLE IF EXISTS `pharmaceutical_company`;
 CREATE TABLE `pharmaceutical_company` (
     `pharmaceutical_company_id` int(11) NOT NULL,
     `name` varchar(20) NOT NULL,
-    `phone_number` int(15) NOT NULL,
+    `phone_number` int(15),
     PRIMARY KEY (`pharmaceutical_company_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -156,9 +156,9 @@ CREATE TABLE `pharmacy` (
     `pharmacy_id` int(11) NOT NULL,
     `name` varchar(20) NOT NULL,
     `town` varchar(20) NOT NULL,
-    `street_name` varchar(20) NOT NULL,
-    `number` int(11) NOT NULL,
-    `postalcode` int(11) NOT NULL,
+    `street_name` varchar(20),
+    `number` int(11),
+    `postalcode` int(11),
     `phone_number` int(15) NOT NULL,
     PRIMARY KEY (`pharmacy_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -175,7 +175,7 @@ CREATE TABLE `prescription` (
     `doctor_id` int(11) NOT NULL,
     `drug_id` int(11) NOT NULL,
     `date` date NOT NULL,
-    `quantity` int(10) NOT NULL,
+    `quantity` int(10),
     PRIMARY KEY (`patient_id`,`doctor_id`,`drug_id`),
     KEY `patient_id` (`patient_id`),
     KEY `doctor_id` (`doctor_id`),
@@ -206,7 +206,7 @@ DROP TABLE IF EXISTS `sell`;
 CREATE TABLE `sell` (
     `pharmacy_id` int(11) NOT NULL,
     `drug_id` int(11) NOT NULL,
-    `price` int(10) NOT NULL,
+    `price` int(10),
     PRIMARY KEY (`pharmacy_id`,`drug_id`),
     KEY `pharmacy_id` (`pharmacy_id`),
     KEY `drug_id` (`drug_id`)
