@@ -308,6 +308,52 @@ END
 //
 DELIMITER ;
 
+
+--
+-- Triggers `pharmacy_deletion`
+--
+DROP TRIGGER IF EXISTS `pharmacy_deletion`;
+DELIMITER //
+CREATE TRIGGER `pharmacy_deletion` BEFORE DELETE ON `pharmacy`
+  FOR EACH ROW BEGIN
+  DELETE FROM contract
+  WHERE OLD.pharmacy_id = contract.pharmacy_id;
+  DELETE FROM sell
+  WHERE OLD.pharmacy_id = sell.pharmacy_id;
+END
+//
+DELIMITER ;
+
+--
+-- Triggers `drug_deletion`
+--
+DROP TRIGGER IF EXISTS `drug_deletion`;
+DELIMITER //
+CREATE TRIGGER `drug_deletion` BEFORE DELETE ON `drug`
+  FOR EACH ROW BEGIN
+  DELETE FROM sell
+  WHERE OLD.drug_id = sell.drug_id;
+  DELETE FROM prescription
+  WHERE OLD.drug_id = prescription.drug_id;
+END
+//
+DELIMITER ;
+
+--
+-- Triggers `drug_creation`
+--
+DROP TRIGGER IF EXISTS `drug_creation`;
+DELIMITER //
+CREATE TRIGGER `drug_creation` AFTER INSERT `drug`
+  FOR EACH ROW BEGIN
+  INSERT INTO sell
+  VALUES (new.drug_id);
+  INSERT INTO prescription
+  VALUES (new.drug_id);
+END
+//
+DELIMITER ;
+
   -- --------------------------------------------------------
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
