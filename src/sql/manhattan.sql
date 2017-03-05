@@ -338,22 +338,6 @@ CREATE TRIGGER `drug_deletion` BEFORE DELETE ON `drug`
 END
 //
 DELIMITER ;
-
---
--- Triggers `drug_creation`
---
-DROP TRIGGER IF EXISTS `drug_creation`;
-DELIMITER //
-CREATE TRIGGER `drug_creation` AFTER INSERT `drug`
-  FOR EACH ROW BEGIN
-  INSERT INTO sell
-  VALUES (new.drug_id);
-  INSERT INTO prescription
-  VALUES (new.drug_id);
-END
-//
-DELIMITER ;
-
   -- --------------------------------------------------------
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
