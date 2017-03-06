@@ -242,7 +242,9 @@ INSERT INTO `doctor` (`doctor_id`, `name`, `surname`, `specialty`, `experience_y
 (17, 'Ari', 'Vatanen', 'Cardiologist', 25),
 (18, 'Rakim', 'Mayers', 'Radiologist', 6),
 (19, 'Jarno', 'Trulli', 'Orthopaedist', 9),
-(20, 'Calvin', 'Broadus', 'Pneumonologist', 20);
+(20, 'Calvin', 'Broadus', 'Pneumonologist', 20),
+(21, 'William', 'Oz', 'Cardiologist', 52),
+(22, 'Francis', 'Underwood', 'Urologist', 67);
 
 --
 -- Dumping data for table `patient`
@@ -266,8 +268,8 @@ INSERT INTO `patient` (`patient_id`, `name`, `surname`, `town`, `street_name`, `
 (15, 'Lloyd', 'Banks', 'Compton', '2nd Street', 1233, 93425, 25, 16),
 (16, 'Richard', 'Ferdinand', 'Synecdoche', 'King George Avenue', 662, 92415, 40, 20),
 (17, 'Viggo', 'Geller', 'Los Angeles', 'Canis Heights Drive', 1230, 90071, 56, 18),
-(18, 'Amber', 'Lancaster', 'Detroit', 'Main Avenue', 1532, 48252, 34, 15);
-
+(18, 'Amber', 'Lancaster', 'Detroit', 'Main Avenue', 1532, 48252, 34, 15),
+(19, 'Anabelle', 'Ocon', 'Miami', 'Ocean Drive', 1413, 49201, 92, 22);
 
 --
 -- Dumping data for table `pharmacy`
@@ -287,7 +289,8 @@ INSERT INTO `pharmacy` (`pharmacy_id`, `name`, `town`, `street_name`, `number`, 
 (11, 'Nature Store', 'Los Angeles', 'Canis Heights Drive', 250, 90071, 2814928491),
 (12, 'Health Experts', 'Beverly Hills', 'Hollywood Avenue', 1242, 90210, 2914031829),
 (13, 'Pharmalife', 'London', 'Beckham Street', 1125, 24501, 4149401922),
-(14, 'Bambees', 'Chicago', 'MJ Street', 2323, 60648, 4258310529);
+(14, 'Bambees', 'Chicago', 'MJ Street', 2323, 60648, 4258310529),
+(15, 'NuLife', 'Miami', 'Ocean Drive', 1425, 49201, 4293019204);
 
 --
 -- Dumping data for table `pharmaceutical_company`
@@ -325,7 +328,8 @@ INSERT INTO `drug` (`drug_id`, `name`, `formula`, `pharmaceutical_company_id`) V
 (10, 'Alumum', 'Al2SO4', 9),
 (11, 'Baren', 'BaCO3', 5),
 (12, 'Calcioner', 'CaCO3', 4),
-(13, 'Camphor', 'C10H16O', 8);
+(13, 'Camphor', 'C10H16O', 8),
+(14, 'Insanitum', 'Na3C4H20', 13);
 
 --
 -- Dumping data for table `contract`
@@ -366,7 +370,8 @@ INSERT INTO `make` (`drug_id`, `pharmaceutical_company_id`) VALUES
 (10, 10),
 (11, 2),
 (12, 3),
-(13, 4);
+(13, 4),
+(14, 13);
 
 --
 -- Dumping data for table `prescription`
@@ -392,7 +397,8 @@ INSERT INTO `prescription` (`patient_id` , `doctor_id`, `drug_id`, `date`, `quan
 (11, 7, 7, '2016-09-31', 350),
 (12, 2, 8, '2016-12-21', 1250),
 (13, 1, 1, '2016-12-12', 500),
-(13, 4, 5, '2015-12-12', 500);
+(13, 4, 5, '2015-12-12', 500),
+(14, 21, 14, '2013-08-29', 600);
 
 --
 -- Dumping data for table `seen_by`
@@ -411,7 +417,8 @@ INSERT INTO `seen_by` (`patient_id` , `doctor_id`) VALUES
 (10, 10),
 (11, 7),
 (12, 1),
-(13, 1);
+(13, 1),
+(14, 21);
 
 --
 -- Dumping data for table `sell`
@@ -436,7 +443,11 @@ INSERT INTO `sell` (`pharmacy_id` , `drug_id`, `price`) VALUES
 (10, 4, 147),
 (1, 3, 205),
 (2, 6, 630),
-(3, 9, 456);
+(3, 9, 456),
+(15, 14, 230),
+(13, 9, 800),
+(10, 8, 942);
+
 
 -- --------------------------------------------------------
 
