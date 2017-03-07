@@ -119,7 +119,7 @@ class Patient{
         $this->number = $row['number'];
         $this->postalcode = $row['postalcode'];
         $this->age = $row['age'];
-        $this->age = $row['doctor_id'];
+        $this->doctor_id = $row['doctor_id'];
 
     }
 
