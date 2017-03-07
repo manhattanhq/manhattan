@@ -42,7 +42,7 @@ CREATE TABLE `contract` (
 --
 -- Stand-in structure for view `contracts_initialized_in_2016`
 --
-
+/*
 DROP TABLE IF EXISTS `contracts_initialized_in_2016`;
 CREATE TABLE `contracts_initialized_in_2016` (
     `pharmacy_id` int(11) NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE `contracts_terminated_in_2016` (
     `supervisor` varchar(20),
     `end_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+*/
 -- --------------------------------------------------------
 
 --
@@ -394,10 +394,13 @@ INSERT INTO `prescription` (`patient_id` , `doctor_id`, `drug_id`, `date`, `quan
 (8, 2, 13, '2016-09-09', 990),
 (9, 10, 5, '2016-09-28', 502),
 (10, 4, 6, '2016-09-29', 503),
+(10, 21, 9, '2014-02-15', 421),
+(11, 19, 4, '2015-07-03', 520),
 (11, 7, 7, '2016-09-31', 350),
 (12, 2, 8, '2016-12-21', 1250),
 (13, 1, 1, '2016-12-12', 500),
 (13, 4, 5, '2015-12-12', 500),
+(14, 10, 11, '2016-10-14', 214),
 (14, 21, 14, '2013-08-29', 600);
 
 --
@@ -458,7 +461,7 @@ INSERT INTO `sell` (`pharmacy_id` , `drug_id`, `price`) VALUES
 --
 -- Constraints for table `patient`
 --
-/*ALTER TABLE `patient`
+ALTER TABLE `patient`
   ADD CONSTRAINT `pat1` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`doctor_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
@@ -478,11 +481,11 @@ ALTER TABLE `sell`
 --
 ALTER TABLE `prescription`
   ADD CONSTRAINT `pre1` FOREIGN KEY (`patient_id`) REFERENCES `pharmacy` (`pharmacy_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-*/
+
 --
 -- Structure for view `contracts_initialized_in_2016`
 --
-DROP TABLE IF EXISTS `contracts_initialized_in_2016`;
+/*DROP TABLE IF EXISTS `contracts_initialized_in_2016`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW `contracts_initialized_in_2016` AS select `contract`.`pharmacy_id` AS `pharmacy_id`,`contract`.`pharmaceutical_company_id` AS `pharmaceutical_company_id`,`contract`.`text` AS `text`,`contract`.`supervisor` AS `supervisor`,`contract`.`start_date` AS `start_date` from `contract` where (`contract`.`start_date` between '2016-01-01' and '2016-12-31');
 
@@ -492,7 +495,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW
 DROP TABLE IF EXISTS `contracts_terminated_in_2016`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW `contracts_terminated_in_2016` AS select `contract`.`pharmacy_id` AS `pharmacy_id`,`contract`.`pharmaceutical_company_id` AS `pharmaceutical_company_id`,`contract`.`text` AS `text`,`contract`.`supervisor` AS `supervisor`,`contract`.`end_date` AS `end_date` from `contract` where (`contract`.`end_date` between '2016-01-01' and '2016-12-31');
-
+*/
 --
 -- Triggers `age_check`
 --
@@ -577,6 +580,8 @@ CREATE TRIGGER `drug_deletion` BEFORE DELETE ON `drug`
 END
 //
 DELIMITER ;
+
+
   -- --------------------------------------------------------
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
