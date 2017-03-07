@@ -30,33 +30,35 @@ CREATE TABLE `doctor` (
     `surname` varchar(20) NOT NULL,
     `specialty` varchar(20) NOT NULL,
     `experience_years` int(2),
+    `created` datetime NOT NULL,
+    `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`doctor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `doctor` (`doctor_id`, `name`, `surname`, `specialty`, `experience_years`) VALUES
-(1, 'Tsim', 'Booky', 'Cardiologist', 18),
-(2, 'Mike', 'Litoris', 'Gynaecologist', 21),
-(3, 'Christabella', 'Eggleston', 'Dermatologist', 9),
-(4, 'Maggi', ' Holgate', 'Leprologist', 26),
-(5, 'Cortney', 'Ryder', 'Neurologist', 22),
-(6, 'Teodoro', ' Litwin', 'Orthopaedist', 30),
-(7, 'Filberto', 'Chiogna', 'Urologist', 15),
-(8, 'Gregorius', 'Afzal-khan', 'Sexologist', 20),
-(9, 'Willie', 'Stanton', 'Radiologist', 11),
-(10, 'Frankie', 'Gabor', 'Parasitologist', 5),
-(11, 'Donald', 'Duck', 'Psychiatrist', 13),
-(12, 'Michael', 'Heck', 'Urologist', 22),
-(13, 'Andre', 'Young', 'Orthopaedist', 32),
-(14, 'Romain', 'Blanc', 'Dermatologist', 10),
-(15, 'DeShawn', 'Jackson', 'Sexologist', 17),
-(16, 'Kimi', 'Raikkonen', 'Psychiatrist', 16),
-(17, 'Ari', 'Vatanen', 'Cardiologist', 25),
-(18, 'Rakim', 'Mayers', 'Radiologist', 6),
-(19, 'Jarno', 'Trulli', 'Orthopaedist', 9),
-(20, 'Calvin', 'Broadus', 'Pneumonologist', 20),
-(21, 'William', 'Oz', 'Cardiologist', 52),
-(22, 'Francis', 'Underwood', 'Urologist', 67);
+INSERT INTO `doctor` (`doctor_id`, `name`, `surname`, `specialty`, `experience_years`, `created`, `modified`) VALUES
+(1, 'Tsim', 'Booky', 'Cardiologist', 18, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(2, 'Mike', 'Litoris', 'Gynaecologist', 21, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(3, 'Christabella', 'Eggleston', 'Dermatologist', 9, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(4, 'Maggi', ' Holgate', 'Leprologist', 26, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(5, 'Cortney', 'Ryder', 'Neurologist', 22, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(6, 'Teodoro', ' Litwin', 'Orthopaedist', 30, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(7, 'Filberto', 'Chiogna', 'Urologist', 15, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(8, 'Gregorius', 'Afzal-khan', 'Sexologist', 20, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(9, 'Willie', 'Stanton', 'Radiologist', 11, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(10, 'Frankie', 'Gabor', 'Parasitologist', 5, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(11, 'Donald', 'Duck', 'Psychiatrist', 13, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(12, 'Michael', 'Heck', 'Urologist', 22, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(13, 'Andre', 'Young', 'Orthopaedist', 32, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(14, 'Romain', 'Blanc', 'Dermatologist', 10, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(15, 'DeShawn', 'Jackson', 'Sexologist', 17, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(16, 'Kimi', 'Raikkonen', 'Psychiatrist', 16, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(17, 'Ari', 'Vatanen', 'Cardiologist', 25, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(18, 'Rakim', 'Mayers', 'Radiologist', 6, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(19, 'Jarno', 'Trulli', 'Orthopaedist', 9, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(20, 'Calvin', 'Broadus', 'Pneumonologist', 20, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(21, 'William', 'Oz', 'Cardiologist', 52, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
+(22, 'Francis', 'Underwood', 'Urologist', 67, '2016-07-01 01:12:26', '2016-06-31 17:12:26');
 
 CREATE TABLE `patient` (
     `patient_id` int(11) NOT NULL,
@@ -75,43 +77,6 @@ CREATE TABLE `patient` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `patient` (`patient_id`, `name`, `surname`, `town`, `street_name`, `number`, `postalcode`, `age`, `doctor_id`, `created`, `modified`) VALUES
-(1, 'Richard', 'Badillo', 'Chicago', 'Oakmound Road', 2538, 60647, 72, 1, '2016-06-01 01:12:26', '2016-05-31 17:12:26'),
-(2, 'William', 'Frazier', 'Detroit', 'Bombardier Way', 1248, 48219, 53 , 3, '2016-06-01 01:12:26', '2016-05-31 17:12:26'),
-(3, 'Nancy', 'Bonnell', 'Tampa', 'Saints Alley', 4459, 33624, 41, 2, '2016-06-01 01:12:26', '2016-05-31 17:12:26'),
-(4, 'Jennifer', 'May', 'Hilo', 'Randall Drive', 625, 96720, 61, 4, '2016-06-01 01:12:26', '2016-05-31 02:12:21'),
-(5, 'William', 'Cooper', 'Des Moines', 'Hazelwood Avenue', 3666, 50309, 77, 5, '2016-06-01 01:13:45', '2016-05-31 02:13:39'),
-(6, 'Jana', 'Winn', 'Ten Sleep', 'Arbor Court', 4792, 82442, 54, 6, '2016-06-01 01:14:13', '2016-05-31 02:14:08'),
-(7, 'Jason', 'Kleinman', 'Los Angeles', 'Canis Heights Drive', 1481, 90071, 21, 7, '2016-06-01 01:18:36', '2016-05-31 02:18:31'),
-(8, 'Rosalie', 'Regis', 'Pittsburgh', 'Pine Street', 2327, 15212, 83, 8, '2016-11-22 18:42:13', '2016-11-21 19:42:13'),
-(9, 'Gary', 'Hinton', 'Norfolk', 'Allison Avenue', 2529, 23510, 21, 9, '2016-11-22 18:42:13', '2016-11-21 19:42:13'),
-(10, 'Rosalie', 'Regis', 'Pittsburgh', 'Pine Street', 2327, 15212, 83, 10, '2016-11-22 18:42:13', '2016-11-21 19:42:13'),
-(11, 'Carlton', 'Chastain', 'Newark', 'Hilltop Haven Drive', 2313, 07102, 32, 7,'2016-11-22 18:42:13', '2016-11-21 19:42:13'),
-(12, 'Jerome', 'Melton', 'Farmingdale', 'Stanley Avenue', 3813, 11735, 77, 1, '2016-11-22 18:42:13', '2016-11-21 19:42:13'),
-(13, 'Sophia', 'Petersen', 'Sammamish', 'Stockert Hollow Road', 3318, 98053, 71, 3, '2016-11-22 18:42:13', '2016-11-21 19:42:13'),
-(14, 'Fernando', 'Soldado', 'New York', 'Wall Street', 2534, 19123, 46, 17, '2016-11-22 18:42:13', '2016-11-21 19:42:13'),
-(15, 'Lloyd', 'Banks', 'Compton', '2nd Street', 1233, 93425, 25, 16, '2016-12-04 21:11:36', '2016-12-03 22:11:36'),
-(16, 'Richard', 'Ferdinand', 'Synecdoche', 'King George Avenue', 662, 92415, 40, 20, '2016-12-04 21:12:03', '2016-12-03 22:12:03'),
-(17, 'Viggo', 'Geller', 'Los Angeles', 'Canis Heights Drive', 1230, 90071, 56, 18, '2016-12-13 00:52:29', '2016-12-12 01:52:29'),
-(18, 'Amber', 'Lancaster', 'Detroit', 'Main Avenue', 1532, 48252, 34, 15, '2016-12-13 00:52:54', '2016-12-12 01:52:54'),
-(19, 'Anabelle', 'Ocon', 'Miami', 'Ocean Drive', 1413, 49201, 92, 22, '2015-01-08 22:44:15', '2015-01-07 23:44:15');
-
-CREATE TABLE `narcos` (
-    `narcos_id` int(11) NOT NULL,
-    `name` varchar(20) NOT NULL,
-    `surname` varchar(20) NOT NULL,
-    `town` varchar(20) NOT NULL,
-    `street_name` varchar(20),
-    `number` int(11),
-    `postalcode` int(11),
-    `age` int(2) NOT NULL,
-    `doctor_id` int(11) NOT NULL,
-    `created` datetime NOT NULL,
-    `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`narcos_id`),
-    KEY `doctor_id` (`doctor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `narcos` (`narcos_id`, `name`, `surname`, `town`, `street_name`, `number`, `postalcode`, `age`, `doctor_id`, `created`, `modified`) VALUES
 (1, 'Richard', 'Badillo', 'Chicago', 'Oakmound Road', 2538, 60647, 72, 1, '2016-06-01 01:12:26', '2016-05-31 17:12:26'),
 (2, 'William', 'Frazier', 'Detroit', 'Bombardier Way', 1248, 48219, 53 , 3, '2016-06-01 01:12:26', '2016-05-31 17:12:26'),
 (3, 'Nancy', 'Bonnell', 'Tampa', 'Saints Alley', 4459, 33624, 41, 2, '2016-06-01 01:12:26', '2016-05-31 17:12:26'),
