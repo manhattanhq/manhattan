@@ -111,10 +111,30 @@ CREATE TABLE `contract` (
     `end_date` date NOT NULL,
     `text` varchar(50),
     `supervisor` varchar(20),
+    `created` datetime NOT NULL,
+    `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`pharmacy_id`,`pharmaceutical_company_id`),
     KEY `pharmacy_id` (`pharmacy_id`),
     KEY `pharmaceutical_company_id` (`pharmaceutical_company_id`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+  INSERT INTO `contract` (`pharmacy_id`, `pharmaceutical_company_id`, `start_date`, `end_date`, `text`, `supervisor`, `created`, `modified`) VALUES
+  (1, 1, '2009-04-28', '2017-06-21', 'Lorem ipsum dolor sit amet, ius ex velit munere commune', 'Fischer', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+  (2, 2, '2013-10-10', '2016-12-08', 'Vel no mandamus honestatis disputando', 'Sanderson', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+  (3, 3, '2012-07-24', '2016-08-24', 'At discere rationibus contentiones vis putent commodo pri at', 'Herrington', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+  (4, 4, '2016-01-24', '2017-05-15', 'Cu quo simul oratio molestiae', 'Miller', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+  (5, 5, '2016-08-13', '2018-04-28', 'Pro postea nemore dolores at ne vel feugait adipiscing', 'Majors', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+  (6, 6, '2001-06-19', '2022-12-31', 'Mei ei voluptua consulatu', 'Matus', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+  (7, 7, '2017-06-03', '2026-12-08', 'Eos commodo aperiri ut', 'Overbeck', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+  (8, 8, '2015-10-05', '2016-04-30', 'Id ipsum luptatum comprehensam usu', 'Britton', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+  (9, 9, '2009-04-28', '2019-03-08', 'Mea no quod nibh nec at mundi congue', 'Cohen', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+  (10, 10, '2016-11-08', '2029-01-18', 'Aperiam referrentur comprehensam cu pri', 'Leahy', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+  (1, 5, '2016-01-08', '2016-08-01', 'Vel eu quas etiam admodum id sea prima ancillae', 'Irons', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+  (2, 6, '2013-11-08' , '2016-03-23', 'Eu his consul repudiandae vix ad modus patrioque', 'Dixon', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+  (5, 4, '2014-09-02', '2016-02-02', 'Ut pri minim nihil partiendo', 'Love', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+  (7, 10, '2013-03-03', '2016-02-22', 'Mea no quod nibh rationibus contentiones vis', 'Barnett', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+  (12, 13, '2015-02-05', '2017-04-20', 'Id ipsum luptatum ei voluptua consulatu', 'Tubbs','2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+  (11, 4, '2010-05-12', '2016-05-02', 'Cu quo simul oratio putent commodo pri at', 'Brady','2016-02-01 01:12:26', '2016-02-31 17:12:26');
 
 --
 -- Stand-in structure for view `contracts_initialized_in_2016`
@@ -158,9 +178,28 @@ CREATE TABLE `drug` (
     `name` varchar(20) NOT NULL,
     `formula` varchar(30),
     `pharmaceutical_company_id` int(11) NOT NULL,
+    `created` datetime NOT NULL,
+    `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`drug_id`),
     KEY `pharmaceutical_company_id` (`pharmaceutical_company_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `drug` (`drug_id`, `name`, `formula`, `pharmaceutical_company_id`, `created`, `modified`) VALUES
+(1, 'Bakingsodium', 'NAHCO3', 1, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(2, 'Cocainot', 'C17H21NO4', 2, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(3, 'Borax', 'NaBO3', 3, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(4, 'Freon', 'CF2Cl2', 4, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(5, 'MEK', 'CH3COC2H5', 5, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(6, 'TSP', 'Na3PO4', 2, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(7, 'LYE', 'HCl', 6, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(8, 'LAG', 'N2O', 7, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(9, 'Bach', 'NaClO', 8, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(10, 'Alumum', 'Al2SO4', 9, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(11, 'Baren', 'BaCO3', 5, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(12, 'Calcioner', 'CaCO3', 4, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(13, 'Camphor', 'C10H16O', 8, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(14, 'Insanitum', 'Na3C4H20', 13, '2016-02-01 01:12:26', '2016-02-31 17:12:26');
 
 -- --------------------------------------------------------
 
@@ -313,43 +352,9 @@ INSERT INTO `pharmaceutical_company` (`pharmaceutical_company_id`, `name`, `phon
 -- Dumping data for table `drug`
 --
 
-INSERT INTO `drug` (`drug_id`, `name`, `formula`, `pharmaceutical_company_id`) VALUES
-(1, 'Bakingsodium', 'NAHCO3', 1),
-(2, 'Cocainot', 'C17H21NO4', 2),
-(3, 'Borax', 'NaBO3', 3),
-(4, 'Freon', 'CF2Cl2', 4),
-(5, 'MEK', 'CH3COC2H5', 5),
-(6, 'TSP', 'Na3PO4', 2),
-(7, 'LYE', 'HCl', 6),
-(8, 'LAG', 'N2O', 7),
-(9, 'Bach', 'NaClO', 8),
-(10, 'Alumum', 'Al2SO4', 9),
-(11, 'Baren', 'BaCO3', 5),
-(12, 'Calcioner', 'CaCO3', 4),
-(13, 'Camphor', 'C10H16O', 8),
-(14, 'Insanitum', 'Na3C4H20', 13);
-
 --
 -- Dumping data for table `contract`
 --
-
-INSERT INTO `contract` (`pharmacy_id`, `pharmaceutical_company_id`, `start_date`, `end_date`, `text`, `supervisor`) VALUES
-(1, 1, '2009-04-28', '2017-06-21', 'Lorem ipsum dolor sit amet, ius ex velit munere commune', 'Fischer'),
-(2, 2, '2013-10-10', '2016-12-08', 'Vel no mandamus honestatis disputando', 'Sanderson'),
-(3, 3, '2012-07-24', '2016-08-24', 'At discere rationibus contentiones vis putent commodo pri at', 'Herrington'),
-(4, 4, '2016-01-24', '2017-05-15', 'Cu quo simul oratio molestiae', 'Miller'),
-(5, 5, '2016-08-13', '2018-04-28', 'Pro postea nemore dolores at ne vel feugait adipiscing', 'Majors'),
-(6, 6, '2001-06-19', '2022-12-31', 'Mei ei voluptua consulatu', 'Matus'),
-(7, 7, '2017-06-03', '2026-12-08', 'Eos commodo aperiri ut', 'Overbeck'),
-(8, 8, '2015-10-05', '2016-04-30', 'Id ipsum luptatum comprehensam usu', 'Britton'),
-(9, 9, '2009-04-28', '2019-03-08', 'Mea no quod nibh nec at mundi congue', 'Cohen'),
-(10, 10, '2016-11-08', '2029-01-18', 'Aperiam referrentur comprehensam cu pri', 'Leahy'),
-(1, 5, '2016-01-08', '2016-08-01', 'Vel eu quas etiam admodum id sea prima ancillae', 'Irons'),
-(2, 6, '2013-11-08' , '2016-03-23', 'Eu his consul repudiandae vix ad modus patrioque', 'Dixon'),
-(5, 4, '2014-09-02', '2016-02-02', 'Ut pri minim nihil partiendo', 'Love'),
-(7, 10, '2013-03-03', '2016-02-22', 'Mea no quod nibh rationibus contentiones vis', 'Barnett'),
-(12, 13, '2015-02-05', '2017-04-20', 'Id ipsum luptatum ei voluptua consulatu', 'Tubbs'),
-(11, 4, '2010-05-12', '2016-05-02', 'Cu quo simul oratio putent commodo pri at', 'Brady');
 
 --
 -- Dumping data for table `make`
