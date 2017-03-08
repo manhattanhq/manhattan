@@ -467,11 +467,11 @@ INSERT INTO `sell` (`pharmacy_id` , `drug_id`, `price`) VALUES
 (13, 9, 800),
 (10, 8, 942);
 
+-- --------------------------------------------------------
+
 --
 -- Triggers for dumped tables
 --
-
--- --------------------------------------------------------
 
 --
 -- Triggers `patient_age_insert_check`
@@ -522,6 +522,19 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Views for dumped tables
+--
+
+--
+-- Structure for view `contracts_initialized_in_2016`
+--
+DROP TABLE IF EXISTS `contracts_initialized_in_2016`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `contracts_initialized_in_2016` AS select `contract`.`pharmacy_id` AS `pharmacy_id`,`contract`.`pharmaceutical_company_id` AS `pharmaceutical_company_id`,`contract`.`text` AS `text`,`contract`.`supervisor` AS `supervisor`,`contract`.`start_date` AS `start_date` from `contract` where (`contract`.`start_date` between '2016-01-01' and '2016-12-31');
+
+-- --------------------------------------------------------
+
+--
 -- Constraints for dumped tables
 --
 
@@ -549,13 +562,7 @@ ALTER TABLE `sell`
 ALTER TABLE `prescription`
   ADD CONSTRAINT `pre1` FOREIGN KEY (`patient_id`) REFERENCES `pharmacy` (`pharmacy_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 */
---
--- Structure for view `contracts_initialized_in_2016`
---
-/*DROP TABLE IF EXISTS `contracts_initialized_in_2016`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW `contracts_initialized_in_2016` AS select `contract`.`pharmacy_id` AS `pharmacy_id`,`contract`.`pharmaceutical_company_id` AS `pharmaceutical_company_id`,`contract`.`text` AS `text`,`contract`.`supervisor` AS `supervisor`,`contract`.`start_date` AS `start_date` from `contract` where (`contract`.`start_date` between '2016-01-01' and '2016-12-31');
-
+/*
 --
 -- Structure for view `contracts_terminated_in_2016`
 --
