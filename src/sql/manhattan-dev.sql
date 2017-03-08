@@ -24,12 +24,13 @@ SET time_zone = "+00:00";
 -- Table structure for table `doctor`
 --
 
+DROP TABLE IF EXISTS `doctor`;
 CREATE TABLE `doctor` (
     `doctor_id` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(20) NOT NULL,
     `surname` varchar(20) NOT NULL,
     `specialty` varchar(20) NOT NULL,
-    `experience_years` int(2),
+    `experience_years` int(2) NOT NULL,
     `created` datetime NOT NULL,
     `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`doctor_id`)
@@ -69,6 +70,7 @@ INSERT INTO `doctor` (`doctor_id`, `name`, `surname`, `specialty`, `experience_y
 -- Table structure for table `patient`
 --
 
+DROP TABLE IF EXISTS `patient`;
 CREATE TABLE `patient` (
     `patient_id` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(20) NOT NULL,
@@ -158,7 +160,7 @@ INSERT INTO `contract` (`pharmacy_id`, `pharmaceutical_company_id`, `start_date`
 --
 -- Stand-in structure for view `contracts_initialized_in_2016`
 --
-
+/*
 DROP TABLE IF EXISTS `contracts_initialized_in_2016`;
 CREATE TABLE `contracts_initialized_in_2016` (
     `pharmacy_id` int(11) NOT NULL,
@@ -179,7 +181,7 @@ CREATE TABLE `contracts_terminated_in_2016` (
     `text` varchar(50),
     `supervisor` varchar(20),
     `end_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;*/
 
 -- --------------------------------------------------------
 
@@ -465,6 +467,57 @@ INSERT INTO `sell` (`pharmacy_id` , `drug_id`, `price`) VALUES
 (13, 9, 800),
 (10, 8, 942);
 
+--
+-- Triggers for dumped tables
+--
+
+-- --------------------------------------------------------
+
+--
+-- Triggers `patient_age_insert_check`
+--
+
+DROP TRIGGER IF EXISTS `patient_age_insert_check`;
+DELIMITER //
+ CREATE TRIGGER `patient_age_insert_check` BEFORE INSERT ON `patient`
+  FOR EACH ROW IF NEW.age < 0 || NEW.age = 0 THEN SET NEW.age = NULL; END IF;
+//
+DELIMITER ;
+
+--
+-- Triggers `patient_age_update_check`
+--
+
+DROP TRIGGER IF EXISTS `patient_age_update_check`;
+DELIMITER //
+ CREATE TRIGGER `patient_age_update_check` BEFORE UPDATE ON `patient`
+  FOR EACH ROW IF NEW.age < 0 || NEW.age = 0 THEN SET NEW.age = OLD.age; END IF;
+//
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Triggers `experience_years_insert_check`
+--
+
+DROP TRIGGER IF EXISTS `experience_years_insert_check`;
+DELIMITER //
+ CREATE TRIGGER `experience_years_insert_check` BEFORE INSERT ON `doctor`
+  FOR EACH ROW IF NEW.experience_years < 0 THEN SET NEW.experience_years = NULL; END IF;
+//
+DELIMITER ;
+
+--
+-- Triggers `experience_years_update_check`
+--
+
+DROP TRIGGER IF EXISTS `experience_years_update_check`;
+DELIMITER //
+ CREATE TRIGGER `experience_years_update_check` BEFORE UPDATE ON `doctor`
+  FOR EACH ROW IF NEW.experience_years < 0 THEN SET NEW.experience_years = OLD.experience_years; END IF;
+//
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -510,15 +563,7 @@ DROP TABLE IF EXISTS `contracts_terminated_in_2016`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`admin`@`localhost` SQL SECURITY DEFINER VIEW `contracts_terminated_in_2016` AS select `contract`.`pharmacy_id` AS `pharmacy_id`,`contract`.`pharmaceutical_company_id` AS `pharmaceutical_company_id`,`contract`.`text` AS `text`,`contract`.`supervisor` AS `supervisor`,`contract`.`end_date` AS `end_date` from `contract` where (`contract`.`end_date` between '2016-01-01' and '2016-12-31');
 
---
--- Triggers `age_check`
---
-DROP TRIGGER IF EXISTS `age_check`;
-DELIMITER //
- CREATE TRIGGER `age_check` BEFORE INSERT ON `patient`
-  FOR EACH ROW IF NEW.age < 0 THEN SET NEW.age = 0; END IF;
-//
-DELIMITER ;
+
 
 --
 -- Triggers `quantity_check`
