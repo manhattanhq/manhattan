@@ -3,130 +3,134 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Drugs</title>
+	<title>Drugs</title>
 
-    <!-- include material design CSS -->
-    <link rel="stylesheet" href="assets/css/materialize/css/materialize.min.css" />
+	<!-- include material design CSS -->
+	<link rel="stylesheet" href="assets/css/materialize/css/materialize.min.css" />
 
-    <!-- include material design icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<!-- include material design icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
-    <!-- include custom CSS -->
-    <link rel="stylesheet" href="assets/css/custom.css" />
+	<!-- include custom CSS -->
+	<link rel="stylesheet" href="assets/css/custom.css" />
 
 </head>
 
 <body>
-    <nav>
-        <div class="nav-wrapper amber">
-            <a href="index.html" class="brand-logo" style="margin-left: 50px;">Manhattan</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="https://github.com/manhattanhq/manhattan">Home</a></li>
-                <li><a href="https://github.com/manhattanhq/manhattan">Github</a></li>
-            </ul>
-        </div>
-    </nav>
-    <!-- page content and controls will be here -->
-    <div class="container" ng-app="myApp" ng-controller="productsCtrl">
-        <div class="row">
-            <div class="col s12">
-                <h4>Drugs</h4>
+	<nav>
+		<div class="nav-wrapper amber">
+			<a href="index.html" class="brand-logo" style="margin-left: 50px;">Manhattan</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a href="doctor.html">Doctors</a></li>
+				<li><a href="pharmaceutical_company.html">Companies</a></li>
+				<li><a href="pharmacy.html">Pharmacies</a></li>
+        <li><a href="patient.html">Patients</a></li>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="https://github.com/manhattanhq/manhattan">Github</a></li>
+			</ul>
+		</div>
+	</nav>
+	<!-- page content and controls will be here -->
+	<div class="container" ng-app="myApp" ng-controller="productsCtrl">
+		<div class="row">
+			<div class="col s12">
+				<h4>Drugs</h4>
 
-                <!-- used for searching the current list -->
-                <input type="text" ng-model="search" class="form-control" placeholder="Search drugs">
+				<!-- used for searching the current list -->
+				<input type="text" ng-model="search" class="form-control" placeholder="Search drugs">
 
-                <!-- table that shows drug record list -->
-                <table class="bordered">
-                    <thead>
-                        <tr class="amber">
-                            <th class="text-align-center">Drug ID</th>
-                            <th class="text-align-center">Name</th>
-                            <th class="text-align-center">Formula</th>
-                            <th class="text-align-center">Pharmaceutical Co ID</th>
-                            <th class="text-align-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody ng-init="getAll()">
-                        <tr class="hoverable" dir-paginate="d in names | filter:search | orderBy:sortKey:reverse | itemsPerPage:10" pagination-id="prodx">
-                            <td class="text-align-center">{{ d.drug_id }}</td>
-                            <td class="text-align-center">{{ d.name }}</td>
-                            <td class="text-align-center">{{ d.formula }}</td>
-                            <td class="text-align-center">{{ d.pharmaceutical_company_id }}</td>
-                            <td class="text-align-center">
-                                <a ng-click="readOne(d.drug_id)" class="waves-effect waves-light btn-floating amber"><i class="material-icons">edit</i></a>
-                                <a ng-click="deleteProduct(d.drug_id)" class="waves-effect waves-light btn-floating amber"><i class="material-icons">delete</i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+				<!-- table that shows drug record list -->
+				<table class="bordered">
+					<thead>
+						<tr class="amber">
+							<th class="text-align-center">Drug ID</th>
+							<th class="text-align-center">Name</th>
+							<th class="text-align-center">Formula</th>
+							<th class="text-align-center">Pharmaceutical Co ID</th>
+							<th class="text-align-center">Action</th>
+						</tr>
+					</thead>
+					<tbody ng-init="getAll()">
+						<tr class="hoverable" dir-paginate="d in names | filter:search | orderBy:sortKey:reverse | itemsPerPage:10" pagination-id="prodx">
+							<td class="text-align-center">{{ d.drug_id }}</td>
+							<td class="text-align-center">{{ d.name }}</td>
+							<td class="text-align-center">{{ d.formula }}</td>
+							<td class="text-align-center">{{ d.pharmaceutical_company_id }}</td>
+							<td class="text-align-center">
+								<a ng-click="readOne(d.drug_id)" class="waves-effect waves-light btn-floating amber"><i class="material-icons">edit</i></a>
+								<a ng-click="deleteProduct(d.drug_id)" class="waves-effect waves-light btn-floating amber"><i class="material-icons">delete</i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 
-                <!-- angular pagination -->
-                <dir-pagination-controls pagination-id="prodx" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dir_pagination.tpl.html"></dir-pagination-controls>
+				<!-- angular pagination -->
+				<dir-pagination-controls pagination-id="prodx" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dir_pagination.tpl.html"></dir-pagination-controls>
 
-                <!-- modal for for creating new drug -->
-                <div id="modal-drug-form" class="modal">
-                    <div class="modal-content">
-                        <h4 id="modal-drug-title">Drug</h4>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input ng-model="name" type="text" class="validate" id="form-name" placeholder="Add name" />
-                                <label for="name">Name</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input ng-model="formula" type="text" class="validate" id="form-formula" placeholder="Add formula" />
-                                <label for="formula">Formula</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input ng-model="pharmaceutical_company_id" type="text" class="validate" id="form-pharmaceutical_company_id" placeholder="Add pharmaceutical_company_id" />
-                                <label for="pharmaceutical_company_id">Pharmaceutical Co ID</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <a id="btn-create-drug" class="waves-effect waves-light btn amber" ng-click="createProduct()"><i class="material-icons left">add</i>Create</a>
+				<!-- modal for for creating new drug -->
+				<div id="modal-drug-form" class="modal">
+					<div class="modal-content">
+						<h4 id="modal-drug-title">Drug</h4>
+						<div class="row">
+							<div class="input-field col s12">
+								<input ng-model="name" type="text" class="validate" id="form-name" placeholder="Add name" />
+								<label for="name">Name</label>
+							</div>
+							<div class="input-field col s12">
+								<input ng-model="formula" type="text" class="validate" id="form-formula" placeholder="Add formula" />
+								<label for="formula">Formula</label>
+							</div>
+							<div class="input-field col s12">
+								<input ng-model="pharmaceutical_company_id" type="text" class="validate" id="form-pharmaceutical_company_id" placeholder="Add pharmaceutical_company_id" />
+								<label for="pharmaceutical_company_id">Pharmaceutical Co ID</label>
+							</div>
+							<div class="input-field col s12">
+								<a id="btn-create-drug" class="waves-effect waves-light btn amber" ng-click="createProduct()"><i class="material-icons left">add</i>Create</a>
 
-                                <a id="btn-update-drug" class="waves-effect waves-light btn amber" ng-click="updateProduct()"><i class="material-icons left">edit</i>Save Changes</a>
+								<a id="btn-update-drug" class="waves-effect waves-light btn amber" ng-click="updateProduct()"><i class="material-icons left">edit</i>Save Changes</a>
 
-                                <a class="modal-action modal-close waves-effect waves-light btn amber"><i class="material-icons left">close</i>Close</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+								<a class="modal-action modal-close waves-effect waves-light btn amber"><i class="material-icons left">close</i>Close</a>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                <!-- floating button for creating drug -->
-                <div class="fixed-action-btn" style="bottom:45px; right:50px;">
-                    <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large amber" href="#modal-drug-form" ng-click="showCreateForm()"><i class="large material-icons">add</i></a>
-                </div>
+				<!-- floating button for creating drug -->
+				<div class="fixed-action-btn" style="bottom:45px; right:50px;">
+					<a class="waves-effect waves-light btn modal-trigger btn-floating btn-large amber" href="#modal-drug-form" ng-click="showCreateForm()"><i class="large material-icons">add</i></a>
+				</div>
 
-            </div>
-            <!-- end col s12 -->
-        </div>
-        <!-- end row -->
-    </div>
-    <!-- end container -->
+			</div>
+			<!-- end col s12 -->
+		</div>
+		<!-- end row -->
+	</div>
+	<!-- end container -->
 
-    <!-- include angular js -->
-    <script src="assets/js/angular.min.js"></script>
+	<!-- include angular js -->
+	<script src="assets/js/angular.min.js"></script>
 
-    <!-- include angular pagination -->
-    <script src="assets/js/dirPagination.js"></script>
+	<!-- include angular pagination -->
+	<script src="assets/js/dirPagination.js"></script>
 
-    <!-- include jquery -->
-    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+	<!-- include jquery -->
+	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
 
-    <!-- material design js -->
-    <script src="assets/css/materialize/js/materialize.min.js"></script>
+	<!-- material design js -->
+	<script src="assets/css/materialize/js/materialize.min.js"></script>
 
-    <!-- custom js -->
-    <script type="text/javascript" src="assets/js/custom.js"></script>
+	<!-- custom js -->
+	<script type="text/javascript" src="assets/js/custom.js"></script>
 
-    <!-- app -->
-    <script type="text/javascript" src="app/app.js"></script>
+	<!-- app -->
+	<script type="text/javascript" src="app/app.js"></script>
 
-    <!-- drug -->
-    <script type="text/javascript" src="app/drug/controller.js"></script>
+	<!-- drug -->
+	<script type="text/javascript" src="app/drug/controller.js"></script>
 
 </body>
 
