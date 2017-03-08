@@ -526,11 +526,20 @@ DELIMITER ;
 --
 
 --
--- Structure for view `contracts_initialized_in_2016`
+-- Structure for view `experienced`
 --
-DROP TABLE IF EXISTS `contracts_initialized_in_2016`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `contracts_initialized_in_2016` AS select `contract`.`pharmacy_id` AS `pharmacy_id`,`contract`.`pharmaceutical_company_id` AS `pharmaceutical_company_id`,`contract`.`text` AS `text`,`contract`.`supervisor` AS `supervisor`,`contract`.`start_date` AS `start_date` from `contract` where (`contract`.`start_date` between '2016-01-01' and '2016-12-31');
+DROP TABLE IF EXISTS `experienced`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `experienced` AS select `doctor`.`doctor_id` AS `doctor_id`,`doctor`.`name` AS `name`,`doctor`.`surname` AS `surname`,`doctor`.`specialty` AS `specialty`,`doctor`.`experience_years` AS `experience_years` from `doctor` where (`doctor`.`experience_years` > 5);
+
+--
+-- Structure for view `average`
+--
+
+DROP TABLE IF EXISTS `average`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `average` AS select `drug`.`drug_id`, `drug`.`name`, AVG(`sell`.`price`) from `drug`, `sell` where (`drug`.`drug_id` = `sell`.`drug_id`) group by `drug`.`drug_id`;
 
 -- --------------------------------------------------------
 
