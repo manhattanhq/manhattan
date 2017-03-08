@@ -1,0 +1,269 @@
+h1 {
+    font-family: Roboto;
+    font-size: 4.6rem;
+    color: #FFFFFF;
+    margin-bottom: 40px;
+    letter-spacing: 0.12em;
+}
+
+h2 {
+    font-family: Roboto;
+    font-size: 3.56rem;
+    color: #212121;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+}
+
+h3 {
+    font-family: Roboto;
+    font-size: 2.92rem;
+    color: #212121;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+}
+
+h4 {
+    font-family: Roboto;
+    font-size: 2.28rem;
+    color: #212121;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+}
+
+h5 {
+    font-family: Roboto;
+    font-size: 1.64rem;
+    color: #212121;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+}
+
+p {
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    color: #727272;
+    line-height: 24px;
+}
+
+
+/* Buttons Style */
+
+.btn-primary {
+    background: #546DFE;
+    color: #FFFFFF;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background: #0097A7;
+}
+
+.btn-primary-dark {
+    background: #0097A7;
+    color: #FFFFFF;
+}
+
+.btn-primary-dark:hover,
+.btn-primary-dark:focus,
+.btn-primary-dark:active {
+    background: #546DFE;
+    color: #FFFFFF;
+}
+
+.btn-white {
+    background: #FFFFFF;
+    color: #212121;
+}
+
+.btn-white:hover,
+.btn-white:focus,
+.btn-white:active {
+    background: #B6B6B6;
+    color: #212121;
+}
+
+.btn-secondary {
+    background: #F3432C;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+    background: #0097A7;
+}
+
+
+/* Layout */
+
+.container {
+    width: 80%;
+}
+
+
+/* Media Queries */
+
+
+@media (max-width: 992px) {
+    #hero h1 {
+        font-size: 4rem;
+    }
+    #hero h3 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 800px) {
+
+    #hero .slides li .caption {
+        left: 15%;
+    }
+    #hero .slides li .caption .btn-primary,
+    #hero .slides li .caption .btn-secondary {
+        margin-right: 0;
+    }
+    #hero .caption {
+        text-align: center;
+    }
+    #hero .caption h1 {
+        font-size: 3rem;
+    }
+    #hero .caption h3 {
+        font-size: 2rem;
+    }
+    #hero .slider.fullscreen {
+        display: none;
+    }
+
+}
+
+
+/* Navigation */
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+header nav {
+    background: none;
+    box-shadow: none;
+    height: 80px;
+}
+
+header nav .nav-wrapper .brand-logo {
+    font-size: 2rem;
+    color: #FFFFFF;
+    letter-spacing: 0.2rem;
+    font-weight: 700;
+}
+
+header nav .nav-wrapper .brand-logo span {
+    font-size: 4rem;
+}
+
+header nav .nav-wrapper .side-nav a:hover {
+    background: #546DFE;
+    color: #FFFFFF;
+}
+
+header nav .nav-wrapper .button-collapse {
+    display: block;
+    float: right;
+}
+
+header nav .nav-wrapper .button-collapse i {
+    line-height: 80px;
+    color: #FFFFFF;
+}
+
+
+header .nav-wrapper .brand-logo {
+    font-size: 2rem;
+    color: #212121;
+    letter-spacing: 0.2rem;
+    font-weight: 700;
+}
+
+header .nav-wrapper .brand-logo span {
+    color: #546DFE;
+    font-size: 4rem;
+}
+
+header .nav-wrapper .button-collapse {
+    display: block;
+    float: right;
+}
+
+header .nav-wrapper .button-collapse i {
+    line-height: 80px;
+    color: #212121;
+}
+
+
+/* Hero (slider) */
+
+#hero {
+    position: relative;
+    height: 100vh;
+}
+
+#hero .caption {
+    top: 30%;
+    left: 10%;
+}
+
+#hero .caption h1 {
+    font-weight: 700;
+}
+
+#hero .caption h3 {
+    color: #FFFFFF;
+}
+
+#hero .caption .btn-primary,
+#hero .caption .btn-secondary {
+    margin-right: 2.1rem;
+}
+
+#hero .indicators .indicator-item.active {
+    background: #546DFE;
+}
+
+/* Preloader */
+
+.preloader {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #FFFFFF;
+    z-index: 100000;
+}
+
+.preloader h2 {
+    font-size: 3rem;
+    color: #212121;
+    font-weight: 700;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -120px 0 0 -90px;
+}
+
+.preloader h2 span {
+    color: #546DFE;
+    font-size: 4rem;
+}
+
+.preloader .preloader-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+}
