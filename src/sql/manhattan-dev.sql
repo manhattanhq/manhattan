@@ -228,8 +228,27 @@ CREATE TABLE `pharmaceutical_company` (
     `pharmaceutical_company_id` int(11) NOT NULL,
     `name` varchar(20) NOT NULL,
     `phone_number` int(15),
+    `created` datetime NOT NULL,
+    `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`pharmaceutical_company_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `pharmaceutical_company` (`pharmaceutical_company_id`, `name`, `phone_number`, `created`, `modified`) VALUES
+(1, 'ACMA', 7058366485,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(2, 'Atlasion', 6052673748, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(3, 'Ganjer', 9659488157, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(4, 'Buehlmeer', 4004569274, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(5, 'Drugmar', 3112248438, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(6, 'Drugunited', 9635224896, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(7, 'Cali', 4004569274, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(8, 'Narcos', 3112248438, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(9, 'Medellin', 9635224896, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(10, 'Pocuocos', 1336924896, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(11, 'Dealers Co.', 1920405279, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(12, 'Los Pollos Hermanos', 1924029104, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(13, 'Fring Laboratories', 9652014950, '2016-02-01 01:12:26', '2016-02-31 17:12:26');
+
 
 -- --------------------------------------------------------
 
@@ -333,20 +352,7 @@ INSERT INTO `pharmacy` (`pharmacy_id`, `name`, `town`, `street_name`, `number`, 
 -- Dumping data for table `pharmaceutical_company`
 --
 
-INSERT INTO `pharmaceutical_company` (`pharmaceutical_company_id`, `name`, `phone_number`) VALUES
-(1, 'ACMA', 7058366485),
-(2, 'Atlasion', 6052673748),
-(3, 'Ganjer', 9659488157),
-(4, 'Buehlmeer', 4004569274),
-(5, 'Drugmar', 3112248438),
-(6, 'Drugunited', 9635224896),
-(7, 'Cali', 4004569274),
-(8, 'Narcos', 3112248438),
-(9, 'Medellin', 9635224896),
-(10, 'Pocuocos', 1336924896),
-(11, 'Dealers Co.', 1920405279),
-(12, 'Los Pollos Hermanos', 1924029104),
-(13, 'Fring Laboratories', 9652014950);
+
 
 --
 -- Dumping data for table `drug`
