@@ -265,8 +265,29 @@ CREATE TABLE `pharmacy` (
     `number` int(11),
     `postalcode` int(11),
     `phone_number` int(15) NOT NULL,
+    `created` datetime NOT NULL,
+    `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`pharmacy_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+INSERT INTO `pharmacy` (`pharmacy_id`, `name`, `town`, `street_name`, `number`, `postalcode`, `phone_number`, `created`, `modified`) VALUES
+(1, 'ACME Pharmacy', 'Chicago', 'Oakmound Road', 1450, 60647, 4258366485,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(2, 'Atlas Drugs', 'Detroit', 'Bombardier Way', 1308, 48219, 5152673748,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(3, 'Free Ganja', 'Tampa', 'Saints Alley', 4179, 33624, 5859488157,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(4, 'Buehler Pharmacy', 'Hilo', 'Randall Drive', 605, 96720, 9164569274,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(5, 'Discount Drug Mart', 'Des Moines', 'Hazelwood Avenue', 3606, 50309, 5082248438,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(6, 'Janckies United', 'Ten Sleep', 'Arbor Court', 4702, 82442, 7155224896,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(7, 'Family Fare Pharmacy', 'Los Angeles', 'Canis Heights Drive', 1491, 90071, 3198619201,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(8, 'Health Mart', 'Pittsburgh', 'Pine Street', 2387, 15212, 2567795407,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(9, 'Ingles Markets', 'Norfolk', 'Allison Avenue', 2549, 23510, 2812377851,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(10, 'Lifechek', 'Pittsburgh', 'Pine Street', 2350, 15212, 8315325671,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(11, 'Nature Store', 'Los Angeles', 'Canis Heights Drive', 250, 90071, 2814928491,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(12, 'Health Experts', 'Beverly Hills', 'Hollywood Avenue', 1242, 90210, 2914031829,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(13, 'Pharmalife', 'London', 'Beckham Street', 1125, 24501, 4149401922,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(14, 'Bambees', 'Chicago', 'MJ Street', 2323, 60648, 4258310529,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(15, 'NuLife', 'Miami', 'Ocean Drive', 1425, 49201, 4293019204,'2016-02-01 01:12:26', '2016-02-31 17:12:26');
 
 -- --------------------------------------------------------
 
@@ -330,23 +351,6 @@ CREATE TABLE `sell` (
 --
 -- Dumping data for table `pharmacy`
 --
-
-INSERT INTO `pharmacy` (`pharmacy_id`, `name`, `town`, `street_name`, `number`, `postalcode`, `phone_number`) VALUES
-(1, 'ACME Pharmacy', 'Chicago', 'Oakmound Road', 1450, 60647, 4258366485),
-(2, 'Atlas Drugs', 'Detroit', 'Bombardier Way', 1308, 48219, 5152673748),
-(3, 'Free Ganja', 'Tampa', 'Saints Alley', 4179, 33624, 5859488157),
-(4, 'Buehler Pharmacy', 'Hilo', 'Randall Drive', 605, 96720, 9164569274),
-(5, 'Discount Drug Mart', 'Des Moines', 'Hazelwood Avenue', 3606, 50309, 5082248438),
-(6, 'Janckies United', 'Ten Sleep', 'Arbor Court', 4702, 82442, 7155224896),
-(7, 'Family Fare Pharmacy', 'Los Angeles', 'Canis Heights Drive', 1491, 90071, 3198619201),
-(8, 'Health Mart', 'Pittsburgh', 'Pine Street', 2387, 15212, 2567795407),
-(9, 'Ingles Markets', 'Norfolk', 'Allison Avenue', 2549, 23510, 2812377851),
-(10, 'Lifechek', 'Pittsburgh', 'Pine Street', 2350, 15212, 8315325671),
-(11, 'Nature Store', 'Los Angeles', 'Canis Heights Drive', 250, 90071, 2814928491),
-(12, 'Health Experts', 'Beverly Hills', 'Hollywood Avenue', 1242, 90210, 2914031829),
-(13, 'Pharmalife', 'London', 'Beckham Street', 1125, 24501, 4149401922),
-(14, 'Bambees', 'Chicago', 'MJ Street', 2323, 60648, 4258310529),
-(15, 'NuLife', 'Miami', 'Ocean Drive', 1425, 49201, 4293019204);
 
 --
 -- Dumping data for table `pharmaceutical_company`
