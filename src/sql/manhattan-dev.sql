@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `doctor` (
-    `doctor_id` int(11) NOT NULL,
+    `doctor_id` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(20) NOT NULL,
     `surname` varchar(20) NOT NULL,
     `specialty` varchar(20) NOT NULL,
@@ -35,6 +35,9 @@ CREATE TABLE `doctor` (
     PRIMARY KEY (`doctor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `doctor`
+--
 
 INSERT INTO `doctor` (`doctor_id`, `name`, `surname`, `specialty`, `experience_years`, `created`, `modified`) VALUES
 (1, 'Tsim', 'Booky', 'Cardiologist', 18, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
@@ -60,8 +63,14 @@ INSERT INTO `doctor` (`doctor_id`, `name`, `surname`, `specialty`, `experience_y
 (21, 'William', 'Oz', 'Cardiologist', 52, '2016-07-01 01:12:26', '2016-06-31 17:12:26'),
 (22, 'Francis', 'Underwood', 'Urologist', 67, '2016-07-01 01:12:26', '2016-06-31 17:12:26');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patient`
+--
+
 CREATE TABLE `patient` (
-    `patient_id` int(11) NOT NULL,
+    `patient_id` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(20) NOT NULL,
     `surname` varchar(20) NOT NULL,
     `town` varchar(20) NOT NULL,
@@ -75,6 +84,10 @@ CREATE TABLE `patient` (
     PRIMARY KEY (`patient_id`),
     KEY `doctor_id` (`doctor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `patient`
+--
 
 INSERT INTO `patient` (`patient_id`, `name`, `surname`, `town`, `street_name`, `number`, `postalcode`, `age`, `doctor_id`, `created`, `modified`) VALUES
 (1, 'Richard', 'Badillo', 'Chicago', 'Oakmound Road', 2538, 60647, 72, 1, '2016-06-01 01:12:26', '2016-05-31 17:12:26'),
@@ -118,23 +131,29 @@ CREATE TABLE `contract` (
     KEY `pharmaceutical_company_id` (`pharmaceutical_company_id`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-  INSERT INTO `contract` (`pharmacy_id`, `pharmaceutical_company_id`, `start_date`, `end_date`, `text`, `supervisor`, `created`, `modified`) VALUES
-  (1, 1, '2009-04-28', '2017-06-21', 'Lorem ipsum dolor sit amet, ius ex velit munere commune', 'Fischer', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
-  (2, 2, '2013-10-10', '2016-12-08', 'Vel no mandamus honestatis disputando', 'Sanderson', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
-  (3, 3, '2012-07-24', '2016-08-24', 'At discere rationibus contentiones vis putent commodo pri at', 'Herrington', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
-  (4, 4, '2016-01-24', '2017-05-15', 'Cu quo simul oratio molestiae', 'Miller', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
-  (5, 5, '2016-08-13', '2018-04-28', 'Pro postea nemore dolores at ne vel feugait adipiscing', 'Majors', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
-  (6, 6, '2001-06-19', '2022-12-31', 'Mei ei voluptua consulatu', 'Matus', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
-  (7, 7, '2017-06-03', '2026-12-08', 'Eos commodo aperiri ut', 'Overbeck', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
-  (8, 8, '2015-10-05', '2016-04-30', 'Id ipsum luptatum comprehensam usu', 'Britton', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
-  (9, 9, '2009-04-28', '2019-03-08', 'Mea no quod nibh nec at mundi congue', 'Cohen', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
-  (10, 10, '2016-11-08', '2029-01-18', 'Aperiam referrentur comprehensam cu pri', 'Leahy', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
-  (1, 5, '2016-01-08', '2016-08-01', 'Vel eu quas etiam admodum id sea prima ancillae', 'Irons', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
-  (2, 6, '2013-11-08' , '2016-03-23', 'Eu his consul repudiandae vix ad modus patrioque', 'Dixon', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
-  (5, 4, '2014-09-02', '2016-02-02', 'Ut pri minim nihil partiendo', 'Love', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
-  (7, 10, '2013-03-03', '2016-02-22', 'Mea no quod nibh rationibus contentiones vis', 'Barnett', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
-  (12, 13, '2015-02-05', '2017-04-20', 'Id ipsum luptatum ei voluptua consulatu', 'Tubbs','2016-02-01 01:12:26', '2016-02-31 17:12:26'),
-  (11, 4, '2010-05-12', '2016-05-02', 'Cu quo simul oratio putent commodo pri at', 'Brady','2016-02-01 01:12:26', '2016-02-31 17:12:26');
+--
+-- Dumping data for table `contract`
+--
+
+INSERT INTO `contract` (`pharmacy_id`, `pharmaceutical_company_id`, `start_date`, `end_date`, `text`, `supervisor`, `created`, `modified`) VALUES
+(1, 1, '2009-04-28', '2017-06-21', 'Lorem ipsum dolor sit amet, ius ex velit munere commune', 'Fischer', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(2, 2, '2013-10-10', '2016-12-08', 'Vel no mandamus honestatis disputando', 'Sanderson', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(3, 3, '2012-07-24', '2016-08-24', 'At discere rationibus contentiones vis putent commodo pri at', 'Herrington', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(4, 4, '2016-01-24', '2017-05-15', 'Cu quo simul oratio molestiae', 'Miller', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(5, 5, '2016-08-13', '2018-04-28', 'Pro postea nemore dolores at ne vel feugait adipiscing', 'Majors', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(6, 6, '2001-06-19', '2022-12-31', 'Mei ei voluptua consulatu', 'Matus', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(7, 7, '2017-06-03', '2026-12-08', 'Eos commodo aperiri ut', 'Overbeck', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(8, 8, '2015-10-05', '2016-04-30', 'Id ipsum luptatum comprehensam usu', 'Britton', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(9, 9, '2009-04-28', '2019-03-08', 'Mea no quod nibh nec at mundi congue', 'Cohen', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(10, 10, '2016-11-08', '2029-01-18', 'Aperiam referrentur comprehensam cu pri', 'Leahy', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(1, 5, '2016-01-08', '2016-08-01', 'Vel eu quas etiam admodum id sea prima ancillae', 'Irons', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(2, 6, '2013-11-08' , '2016-03-23', 'Eu his consul repudiandae vix ad modus patrioque', 'Dixon', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(5, 4, '2014-09-02', '2016-02-02', 'Ut pri minim nihil partiendo', 'Love', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(7, 10, '2013-03-03', '2016-02-22', 'Mea no quod nibh rationibus contentiones vis', 'Barnett', '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(12, 13, '2015-02-05', '2017-04-20', 'Id ipsum luptatum ei voluptua consulatu', 'Tubbs','2016-02-01 01:12:26', '2016-02-31 17:12:26'),
+(11, 4, '2010-05-12', '2016-05-02', 'Cu quo simul oratio putent commodo pri at', 'Brady','2016-02-01 01:12:26', '2016-02-31 17:12:26');
+
+-- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `contracts_initialized_in_2016`
@@ -164,17 +183,13 @@ CREATE TABLE `contracts_terminated_in_2016` (
 
 -- --------------------------------------------------------
 
-
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `drug`
 --
 
 DROP TABLE IF EXISTS `drug`;
 CREATE TABLE `drug` (
-    `drug_id` int(11) NOT NULL,
+    `drug_id` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(20) NOT NULL,
     `formula` varchar(30),
     `pharmaceutical_company_id` int(11) NOT NULL,
@@ -184,6 +199,9 @@ CREATE TABLE `drug` (
     KEY `pharmaceutical_company_id` (`pharmaceutical_company_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `drug`
+--
 
 INSERT INTO `drug` (`drug_id`, `name`, `formula`, `pharmaceutical_company_id`, `created`, `modified`) VALUES
 (1, 'Bakingsodium', 'NAHCO3', 1, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
@@ -217,15 +235,13 @@ CREATE TABLE `make` (
 
 -- --------------------------------------------------------
 
--- --------------------------------------------------------
-
 --
 -- Table structure for table `pharmaceutical_company`
 --
 
 DROP TABLE IF EXISTS `pharmaceutical_company`;
 CREATE TABLE `pharmaceutical_company` (
-    `pharmaceutical_company_id` int(11) NOT NULL,
+    `pharmaceutical_company_id` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(20) NOT NULL,
     `phone_number` int(15),
     `created` datetime NOT NULL,
@@ -233,6 +249,9 @@ CREATE TABLE `pharmaceutical_company` (
     PRIMARY KEY (`pharmaceutical_company_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `pharmaceutical_company`
+--
 
 INSERT INTO `pharmaceutical_company` (`pharmaceutical_company_id`, `name`, `phone_number`, `created`, `modified`) VALUES
 (1, 'ACMA', 7058366485,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
@@ -249,7 +268,6 @@ INSERT INTO `pharmaceutical_company` (`pharmaceutical_company_id`, `name`, `phon
 (12, 'Los Pollos Hermanos', 1924029104, '2016-02-01 01:12:26', '2016-02-31 17:12:26'),
 (13, 'Fring Laboratories', 9652014950, '2016-02-01 01:12:26', '2016-02-31 17:12:26');
 
-
 -- --------------------------------------------------------
 
 --
@@ -258,7 +276,7 @@ INSERT INTO `pharmaceutical_company` (`pharmaceutical_company_id`, `name`, `phon
 
 DROP TABLE IF EXISTS `pharmacy`;
 CREATE TABLE `pharmacy` (
-    `pharmacy_id` int(11) NOT NULL,
+    `pharmacy_id` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(20) NOT NULL,
     `town` varchar(20) NOT NULL,
     `street_name` varchar(20),
@@ -270,7 +288,9 @@ CREATE TABLE `pharmacy` (
     PRIMARY KEY (`pharmacy_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+--
+-- Dumping data for table `pharmacy`
+--
 
 INSERT INTO `pharmacy` (`pharmacy_id`, `name`, `town`, `street_name`, `number`, `postalcode`, `phone_number`, `created`, `modified`) VALUES
 (1, 'ACME Pharmacy', 'Chicago', 'Oakmound Road', 1450, 60647, 4258366485,'2016-02-01 01:12:26', '2016-02-31 17:12:26'),
@@ -345,28 +365,6 @@ CREATE TABLE `sell` (
 --
 
 --
--- Dumping data for table `doctor`
---
-
---
--- Dumping data for table `pharmacy`
---
-
---
--- Dumping data for table `pharmaceutical_company`
---
-
-
-
---
--- Dumping data for table `drug`
---
-
---
--- Dumping data for table `contract`
---
-
---
 -- Dumping data for table `make`
 --
 
@@ -385,6 +383,8 @@ INSERT INTO `make` (`drug_id`, `pharmaceutical_company_id`) VALUES
 (12, 3),
 (13, 4),
 (14, 13);
+
+-- --------------------------------------------------------
 
 --
 -- Dumping data for table `prescription`
@@ -413,6 +413,8 @@ INSERT INTO `prescription` (`patient_id` , `doctor_id`, `drug_id`, `date`, `quan
 (13, 4, 5, '2015-12-12', 500),
 (14, 21, 14, '2013-08-29', 600);
 
+-- --------------------------------------------------------
+
 --
 -- Dumping data for table `seen_by`
 --
@@ -432,6 +434,8 @@ INSERT INTO `seen_by` (`patient_id` , `doctor_id`) VALUES
 (12, 1),
 (13, 1),
 (14, 21);
+
+-- --------------------------------------------------------
 
 --
 -- Dumping data for table `sell`
