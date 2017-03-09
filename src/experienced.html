@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Experienced</title>
+
+	<!-- include material design CSS -->
+	<link rel="stylesheet" href="assets/css/materialize/css/materialize.min.css" />
+
+	<!-- include material design icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+	<!-- include custom CSS -->
+	<link rel="stylesheet" href="assets/css/custom.css" />
+
+</head>
+
+<body>
+	<nav>
+		<div class="nav-wrapper amber">
+			<a href="index.html" class="brand-logo" style="margin-left: 50px;">Manhattan</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a href="drug.html">Drugs</a></li>
+				<li><a href="pharmaceutical_company.html">Companies</a></li>
+				<li><a href="pharmacy.html">Pharmacies</a></li>
+				<li><a href="patient.html">Patients</a></li>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="https://github.com/manhattanhq/manhattan">Github</a></li>
+			</ul>
+		</div>
+	</nav>
+	<!-- page content and controls will be here -->
+	<div class="container" ng-app="myApp" ng-controller="productsCtrl">
+		<div class="row">
+			<div class="col s12">
+				<h4>Experienceds</h4>
+
+				<!-- used for searching the current list -->
+				<input type="text" ng-model="search" class="form-control" placeholder="Search experienceds">
+
+				<!-- table that shows experienced record list -->
+				<table class="bordered">
+					<thead>
+						<tr class="amber">
+							<th class="text-align-center">Experienced ID</th>
+							<th class="text-align-center">First Name</th>
+							<th class="text-align-center">Last Name</th>
+							<th class="text-align-center">Specialty</th>
+							<th class="text-align-center">Years Experience</th>
+							<th class="text-align-center">Action</th>
+						</tr>
+					</thead>
+					<tbody ng-init="getAll()">
+						<tr class="hoverable" dir-paginate="d in names | filter:search | orderBy:sortKey:reverse | itemsPerPage:10" pagination-id="prodx">
+							<td class="text-align-center">{{ d.experienced_id }}</td>
+							<td class="text-align-center">{{ d.name }}</td>
+							<td class="text-align-center">{{ d.surname }}</td>
+							<td class="text-align-center">{{ d.specialty }}</td>
+							<td class="text-align-center">{{ d.experience_years }}</td>
+							<td class="text-align-center">
+								<a ng-click="readOne(d.experienced_id)" class="waves-effect waves-light btn-floating amber"><i class="material-icons">edit</i></a>
+								<a ng-click="deleteProduct(d.experienced_id)" class="waves-effect waves-light btn-floating amber"><i class="material-icons">delete</i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!-- angular pagination -->
+				<dir-pagination-controls pagination-id="prodx" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dir_pagination.tpl.html"></dir-pagination-controls>
+
+				<!-- modal for for creating new experienced -->
+				<div id="modal-experienced-form" class="modal">
+					<div class="modal-content">
+						<h4 id="modal-experienced-title">Experienced</h4>
+						<div class="row">
+							<div class="input-field col s12">
+								<input ng-model="name" type="text" class="validate" id="form-name" placeholder="Add name" />
+								<label for="name">First Name</label>
+							</div>
+							<div class="input-field col s12">
+								<input ng-model="surname" type="text" class="validate" id="form-surname" placeholder="Add surname" />
+								<label for="surname">Surname</label>
+							</div>
+							<div class="input-field col s12">
+								<input ng-model="specialty" type="text" class="validate" id="form-specialty" placeholder="Add specialty" />
+								<label for="specialty">Specialty</label>
+							</div>
+							<div class="input-field col s12">
+								<input ng-model="experience_years" type="text" class="validate" id="form-experience_years" placeholder="Add street name" />
+								<label for="experience_years">XP Years</label>
+							</div>
+							<div class="input-field col s12">
+								<a id="btn-create-experienced" class="waves-effect waves-light btn amber" ng-click="createProduct()"><i class="material-icons left">add</i>Create</a>
+
+								<a id="btn-update-experienced" class="waves-effect waves-light btn amber" ng-click="updateProduct()"><i class="material-icons left">edit</i>Save Changes</a>
+
+								<a class="modal-action modal-close waves-effect waves-light btn amber"><i class="material-icons left">close</i>Close</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- floating button for creating experienced -->
+				<div class="fixed-action-btn" style="bottom:45px; right:50px;">
+					<a class="waves-effect waves-light btn modal-trigger btn-floating btn-large amber" href="#modal-experienced-form" ng-click="showCreateForm()"><i class="large material-icons">add</i></a>
+				</div>
+
+			</div>
+			<!-- end col s12 -->
+		</div>
+		<!-- end row -->
+	</div>
+	<!-- end container -->
+
+	<!-- include angular js -->
+	<script src="assets/js/angular.min.js"></script>
+
+	<!-- include angular pagination -->
+	<script src="assets/js/dirPagination.js"></script>
+
+	<!-- include jquery -->
+	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+
+	<!-- material design js -->
+	<script src="assets/css/materialize/js/materialize.min.js"></script>
+
+	<!-- custom js -->
+	<script type="text/javascript" src="assets/js/custom.js"></script>
+
+	<!-- app -->
+	<script type="text/javascript" src="app/app.js"></script>
+
+	<!-- experienced -->
+	<script type="text/javascript" src="app/experienced/controller.js"></script>
+
+</body>
+
+</html>
