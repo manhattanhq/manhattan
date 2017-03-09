@@ -655,6 +655,19 @@ CREATE TRIGGER `drug_deletion` BEFORE DELETE ON `drug`
 END
 //
 DELIMITER ;
+
+--
+-- Triggers `doctor_deletion`
+--
+DROP TRIGGER IF EXISTS `doctor_deletion`;
+DELIMITER //
+CREATE TRIGGER `doctor_deletion` BEFORE DELETE ON `doctor`
+  FOR EACH ROW BEGIN
+  DELETE FROM patient
+  WHERE OLD.doctor_id = patient.doctor_id;
+END
+//
+DELIMITER ;
   -- --------------------------------------------------------
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
