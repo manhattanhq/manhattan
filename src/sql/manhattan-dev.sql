@@ -624,7 +624,7 @@ SET@start_date=NOW();
 END
 //
 DELIMITER ;
-
+*/
 
 --
 -- Triggers `pharmacy_deletion`
@@ -654,7 +654,7 @@ CREATE TRIGGER `drug_deletion` BEFORE DELETE ON `drug`
   WHERE OLD.drug_id = prescription.drug_id;
 END
 //
-DELIMITER ;*/
+DELIMITER ;
   -- --------------------------------------------------------
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
