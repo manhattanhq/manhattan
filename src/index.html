@@ -87,17 +87,26 @@
 
 	<header>
 		<nav>
-			<div class="container">
-				<div class="nav-wrapper">
-					<a href="#hero" class="brand-logo page-scroll">Manhattan<span></span></a>
-					<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-					<!-- Side Nav Links -->
-					<ul class="side-nav" id="mobile-demo">
-						<li><a href="#about" class="page-scroll">About</a></li>
-						<li><a href="#portfolio" class="page-scroll">App</a></li>
-						<li><a href="#team" class="page-scroll">Team</a></li>
-						<li><a href="#blog" class="page-scroll">Github</a></li>
-						<li><a href="#contact" class="page-scroll">Contact</a></li>
+			<!-- Dropdown Structure -->
+			<ul id="dropdown1" class="dropdown-content">
+				<li><a href="queries/query-1.php">Query 1</a></li>
+				<li><a href="queries/query-2.php">Query 2</a></li>
+				<li><a href="queries/query-3.php">Query 3</a></li>
+				<li><a href="queries/query-4.php">Query 4</a></li>
+				<li><a href="queries/query-5.php">Query 5</a></li>
+				<li><a href="queries/query-6.php">Query 6</a></li>
+				<li><a href="queries/query-7.php">Query 7</a></li>
+				<li><a href="queries/query-8.php">Query 8</a></li>
+				<li><a href="queries/query-9.php">Query 9</a></li>
+				<li><a href="queries/query-10.php">Query 10</a></li>
+			</ul>
+			<div class="nav-wrapper amber">
+				<div class="container">
+					<a href="index.html" class="brand-logo">Manhattan</a>
+					<ul class="right hide-on-med-and-down">
+						<li><a href="https://github.com/manhattanhq/manhattan">Github</a></li>
+						<!-- Dropdown Trigger -->
+						<li><a class="dropdown-button" href="#!" data-activates="dropdown1">Queries<i class="material-icons right">arrow_drop_down</i></a></li>
 					</ul>
 				</div>
 			</div>
@@ -127,7 +136,7 @@
 					<div class="caption left-align">
 						<h3>A stellar</h3>
 						<h1>Database app!</h1>
-						<a class="waves-effect waves-light btn-large btn-primary" href="https://github.com/manhattanhq/manhattan">Download</a>
+						<a class="waves-effect waves-light btn-large btn-primary" href="https://github.com/manhattanhq/manhattan" data-activates="dropdown1">Download</a>
 						<a class="waves-effect waves-light btn-large btn-white" href="https://github.com/manhattanhq/manhattan">Github Repo</a>
 					</div>
 				</li>
