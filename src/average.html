@@ -54,20 +54,20 @@
 	<div class="container" ng-app="myApp" ng-controller="productsCtrl">
 		<div class="row">
 			<div class="col s12">
-				<h4>Averages</h4>
+				<h4>Average prices</h4>
 
 				<!-- used for searching the current list -->
-				<input type="text" ng-model="search" class="form-control" placeholder="Search averages">
+				<input type="text" ng-model="search" class="form-control" placeholder="Search average prices">
 
 				<!-- table that shows average record list -->
 				<table class="bordered">
 					<thead>
 						<tr class="amber">
-							<th class="text-align-center">Average ID</th>
+							<th class="text-align-center">Drug ID</th>
 							<th class="text-align-center">Name</th>
 							<th class="text-align-center">Formula</th>
-							<th class="text-align-center">Pharmaceutical Co ID</th>
-							<th class="text-align-center">AVERAGE</th>
+							<th class="text-align-center">Company ID</th>
+							<th class="text-align-center">Average Price</th>
 						</tr>
 					</thead>
 					<tbody ng-init="getAll()">
