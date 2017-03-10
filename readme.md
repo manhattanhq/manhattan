@@ -4,6 +4,12 @@
 
 [![Trello Board](https://img.shields.io/badge/trello-board-blue.svg)](https://trello.com/b/ut3VcEu2) [![Repo Size](https://reposs.herokuapp.com/?path=manhattanhq/manhattan&color=orange)](https://raw.githubusercontent.com/manhattanhq/manhattan) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/klauscfhq/os-x-ntua/master/license) [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 
+<div align="center">
+    <a href="https://github.com/manhattanhq/manhattan">
+  <img src="https://cdn.rawgit.com/manhattanhq/manhattan/e59ca43b/media/screen.png" alt="App main screen">
+</a>
+  <br></div>
+
 ## Contents
 
 - [Project Description](#projec-description)
@@ -114,9 +120,7 @@ Also, each patient has a doctor monitoring him, while a each doctor has **at lea
 
 > Connects a pharmacy with its selling drugs.
 
-Each pharmacy can have for sale **any number** of drugs, while a drug can be
-available at **any number** of pharmacies. Also, the relation holds a **Price**
-attribute, representing the selling price of a drug.
+Each pharmacy can have for sale **any number** of drugs, while a drug can be available at **any number** of pharmacies. Also, the relation holds a **Price** attribute, representing the selling price of a drug.
 
 Additionally, we consider that each pharmacy can have drugs for sale, while a drug can be **unavailable** at all pharmacies.
 
@@ -133,8 +137,7 @@ Additionally, we consider that each pharmacy can have drugs for sale, while a dr
 
 > Connects a drug with the pharmaceutical company producing it.
 
-Each drug can be produced by **at most one** pharmaceutical company, while a
-pharmaceutical company can be producing **any number** of drugs.
+Each drug can be produced by **at most one** pharmaceutical company, while a pharmaceutical company can be producing **any number** of drugs.
 
 Additionally, each drug can be produced by a pharmaceutical company, while a pharmaceutical company might **not be producing** some drugs out of the totally registered ones.
 
@@ -149,13 +152,7 @@ Additionally, each drug can be produced by a pharmaceutical company, while a pha
 
 > Connects a patient with a doctor and a prescribed drug.
 
-This is a **ternary relationship**, where a patient can receive a prescription for
-**any number** of drugs by **any number** of doctors, a doctor can prescribe
-**any number** of drugs to **any number** of patients, and a drug can be
-prescribed to **any number** of patients by **any number** of doctors. Also,
-the relation holds a **Date** attribute, representing the prescription date,
-and a **Quantity** attribute, representing the quantity of the prescribed
-drug.
+This is a **ternary relationship**, where a patient can receive a prescription for **any number** of drugs by **any number** of doctors, a doctor can prescribe **any number** of drugs to **any number** of patients, and a drug can be prescribed to **any number** of patients by **any number** of doctors. Also, the relation holds a **Date** attribute, representing the prescription date, and a **Quantity** attribute, representing the quantity of the prescribed drug.
 
 Additionally, for a patient might not exist a corresponding prescription, and a doctor might not have prescribed a prescription for a corresponding patient, while a drug might not have been prescribed by a doctor for a patient.
 
@@ -175,9 +172,7 @@ Finally, if a doctor prescribes the same drug to the same patient, more than one
 
 > Connects a pharmaceutical company with a pharmacy.
 
-A pharmacy can be in contract with **any number** of pharmaceutical companies,
-while a pharmaceutical company can be in contract with **any number** of
-pharmacies. Also, the relations holds a **StartDate** and an **EndDate** attribute, representing the contract initialization and termination dates accordingly, a **Text** attribute, representing the text upon which the contract was agreed and signed by both counterparts, and a **Supervisor** attribute, representing the contract supervisor.
+A pharmacy can be in contract with **any number** of pharmaceutical companies, while a pharmaceutical company can be in contract with **any number** of pharmacies. Also, the relations holds a **StartDate** and an **EndDate** attribute, representing the contract initialization and termination dates accordingly, a **Text** attribute, representing the text upon which the contract was agreed and signed by both counterparts, and a **Supervisor** attribute, representing the contract supervisor.
 
 We consider that each pharmacy is in contract with a pharmaceutical company, to supply itself with drugs, while each registered pharmaceutical company is in contract with one of the pharmacies.
 
@@ -199,7 +194,7 @@ Finally, if a pharmacy signs a contract with the same company, more than one tim
 ### ER Diagram
 
 <div align="center">
-    <a href="#">
+  <a href="#">
   <img src="https://cdn.rawgit.com/manhattanhq/manhattan/5359efed/src/diagrams/ER.png" alt="ER Diagram" width="75%">
 </a>
 </div>
@@ -226,15 +221,14 @@ Also, we replaced the composite attribute **Address** with the simple attributes
 - **Sell** (**_PharmacyId_**, **_DrugId_**, Price)
 - **Make** (**_DrugId_**, PharmaceuticalCompanyId)
 - **Prescription** (**_PatientId_**, **_DoctorId_**, **_DrugId_**, Date, Quantity)
-- **Contract** (**_PharmacyId_**, **_PharmaceuticalCompanyId_**, StartDate, EndDate, Text,
-Supervisor)
+- **Contract** (**_PharmacyId_**, **_PharmaceuticalCompanyId_**, StartDate, EndDate, Text, Supervisor)
 
 [:arrow_up:Back to top!](#contents)
 
 ### R Diagram
 
 <div align="center">
-    <a href="#">
+  <a href="#">
   <img src="https://cdn.rawgit.com/manhattanhq/manhattan/5359efed/src/diagrams/R.png" alt="R Diagram" width="75%">
 </a>
 </div>
@@ -249,7 +243,7 @@ Some sample structure designs pulled from the latest main Manhattan SQL source.
 
 #### Table structure for `patient`
 
-```SQL
+```sql
 CREATE TABLE `patient` (
   `patient_id` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
@@ -264,17 +258,16 @@ CREATE TABLE `patient` (
 
 #### Indexes for table `patient`
 
-```SQL
+```sql
 ALTER TABLE `patient`
   ADD PRIMARY KEY (`patient_id`);
 ```
 
 ### Prescription Table Design
 
-
 #### Table structure for `prescription`
 
-```SQL
+```sql
 CREATE TABLE `prescription` (
   `patient_id` int(11) NOT NULL,
   `doctor_id` int(11) NOT NULL,
@@ -286,7 +279,7 @@ CREATE TABLE `prescription` (
 
 #### Indexes for table `prescription`
 
-```SQL
+```sql
 ALTER TABLE `prescription`
   ADD PRIMARY KEY (`patient_id`,`doctor_id`,`drug_id`);
 ```
@@ -323,8 +316,9 @@ cd manhattan
 :sparkles: **<>** with :heart: by George, Konstantinos & Klaus :sparkles:
 
 [![George Baxopoulos](https://avatars.githubusercontent.com/u/)](https://github.com/georgebax) | [![Konstantinos Mitropoulos](https://avatars.githubusercontent.com/u/)](https://github.com/tsikos7) | [![Klaus Sinani](https://avatars.githubusercontent.com/u/)](https://github.com/klauscfhq)
---- | --- | ---
-[George Baxopoulos](http://github.com/georgebax) | [Konstantinos Mitropoulos](https://github.com/tsikos7) | [Klaus Sinani](https://github.com/klauscfhq)
+---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | -----------------------------------------------------------------------------------------
+[George Baxopoulos](http://github.com/georgebax)                                               | [Konstantinos Mitropoulos](https://github.com/tsikos7)                                              | [Klaus Sinani](https://github.com/klauscfhq)
+
 ## License
 
 MIT © [George Baxopoulos](https://github.com/georgebax), [Konstantinos Mitropoulos](https://github.com/tsikos7) & [Klaus Sinani](https://github.com/klauscfhq)
