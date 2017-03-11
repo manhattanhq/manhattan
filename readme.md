@@ -6,10 +6,10 @@
 
 <div align="center">
     <a href="https://github.com/manhattanhq/manhattan">
-  <img src="https://cdn.rawgit.com/manhattanhq/manhattan/e59ca43b/media/screen.png" alt="App main screen">
-</a>
-  <br></div>
-
+      <img src="https://cdn.rawgit.com/manhattanhq/manhattan/e59ca43b/media/screen.png" alt="App main screen">
+    </a>
+  <br>
+</div>
 
 ## Contents
 
@@ -196,8 +196,8 @@ Finally, if a pharmacy signs a contract with the same company, more than one tim
 
 <div align="center">
   <a href="#">
-  <img src="https://cdn.rawgit.com/manhattanhq/manhattan/5359efed/src/diagrams/ER.png" alt="ER Diagram" width="75%">
-</a>
+    <img src="https://cdn.rawgit.com/manhattanhq/manhattan/5359efed/src/diagrams/ER.png" alt="ER Diagram" width="75%">
+  </a>
 </div>
 
 ## R Model
@@ -230,8 +230,8 @@ Also, we replaced the composite attribute **Address** with the simple attributes
 
 <div align="center">
   <a href="#">
-  <img src="https://cdn.rawgit.com/manhattanhq/manhattan/5359efed/src/diagrams/R.png" alt="R Diagram" width="75%">
-</a>
+    <img src="https://cdn.rawgit.com/manhattanhq/manhattan/5359efed/src/diagrams/R.png" alt="R Diagram" width="75%">
+  </a>
 </div>
 
 ## API
@@ -317,17 +317,19 @@ cd manhattan
 :sparkles: **<>** with :heart: by George, Konstantinos & Klaus :sparkles:
 
 [![George Baxopoulos](https://avatars.githubusercontent.com/u/)](https://github.com/georgebax) | [![Konstantinos Mitropoulos](https://avatars.githubusercontent.com/u/)](https://github.com/tsikos7) | [![Klaus Sinani](https://avatars.githubusercontent.com/u/)](https://github.com/klauscfhq)
----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | -----------------------------------------------------------------------------------------
-[George Baxopoulos](http://github.com/georgebax)                                               | [Konstantinos Mitropoulos](https://github.com/tsikos7)                                              | [Klaus Sinani](https://github.com/klauscfhq)
+--- | --- | ---
+[George Baxopoulos](http://github.com/georgebax) | [Konstantinos Mitropoulos](https://github.com/tsikos7) | [Klaus Sinani](https://github.com/klauscfhq)
 
 ## License
 
 MIT © [George Baxopoulos](https://github.com/georgebax), [Konstantinos Mitropoulos](https://github.com/tsikos7) & [Klaus Sinani](https://github.com/klauscfhq)
 
-<div align="center"><br>
+<div align="center">
   <br>
-    <a href="https://github.com/manhattanhq/manhattan">
-  <img src="https://cdn.rawgit.com/manhattanhq/manhattan/16b69460/media/logo.png" alt="Manhattan" width="40%">
-</a>
+    <br>
+      <a href="https://github.com/manhattanhq/manhattan">
+        <img src="https://cdn.rawgit.com/manhattanhq/manhattan/16b69460/media/logo.png" alt="Manhattan" width="40%">
+      </a>
+    <br>
   <br>
-  <br></div>
+</div>
