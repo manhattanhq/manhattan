@@ -1,0 +1,22 @@
+{
+  "name": "manhattan",
+  "version": "0.1.0",
+  "description": "🗽Materialy designed stellar🚀 database app",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manhattanhq/manhattan.git"
+  },
+  "author": {
+    "name": "Klaus Sinani",
+    "email": "klauscfhq@protonmail.com",
+    "url": "cookfood.me"
+  },
+  "scripts": {
+    "test": "xo"
+  },
+  "devDependencies": {
+    "xo": "^0.17.1"
+  },
+"homepage": "https://manhattanhq.github.io/",
+}
