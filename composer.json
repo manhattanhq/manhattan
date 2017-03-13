@@ -1,0 +1,12 @@
+{
+	"name": "manhattanhq/manhattan",
+	"description": "🗽Materialy designed stellar🚀 database app",
+	"homepage": "https://manhattanhq.github.io/",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Klaus Sinani",
+			"email": "klauscfhq@protonmail.com"
+		}
+	]
+}
