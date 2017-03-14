@@ -8,5 +8,9 @@
 			"name": "Klaus Sinani",
 			"email": "klauscfhq@protonmail.com"
 		}
-	]
+	],
+	 "bin": [
+        "bin/heroku-php-apache2",
+        "bin/heroku-php-nginx"
+    ]
 }
