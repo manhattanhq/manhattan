@@ -16,7 +16,6 @@
     "url": "cookfood.me"
   },
   "devDependencies": {
-    "xo": "^0.17.1"
-  },
-"homepage": "https://manhattanhq.github.io/",
+    "xo": "0.17.1"
+  }
 }
