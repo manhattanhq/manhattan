@@ -1,145 +1,137 @@
-app.controller('productsCtrl', function($scope, $http) {
+app.controller('productsCtrl', function ($scope, $http) {
+	// delete drug
+  $scope.deleteProduct = function (drug_id) {
+		// ask the user if he is sure to delete the record
+    if (confirm('Are you sure?')) {
+      $http({
+        method: 'POST',
+        data: {
+          drug_id: drug_id
+        },
+        url: 'api/drug/delete.php'
+      }).then(function successCallback(response) {
+				// tell the user drug was deleted
+        Materialize.toast(response.data, 4000);
 
-    // delete drug
-    $scope.deleteProduct = function(drug_id){
-
-        // ask the user if he is sure to delete the record
-        if(confirm("Are you sure?")){
-
-            $http({
-                method: 'POST',
-                data: { 'drug_id' : drug_id },
-                url: 'api/drug/delete.php'
-            }).then(function successCallback(response) {
-
-                // tell the user drug was deleted
-                Materialize.toast(response.data, 4000);
-
-                // refresh the list
-                $scope.getAll();
-            });
-        }
+				// refresh the list
+        $scope.getAll();
+      });
     }
+  };
 
-    // update drug record / save changes
-    $scope.updateProduct = function(){
-        $http({
-            method: 'POST',
-            data: {
-                'drug_id' : $scope.drug_id,
-                'name' : $scope.name,
-                'formula' : $scope.formula,
-                'pharmaceutical_company_id' : $scope.pharmaceutical_company_id
-            },
-            url: 'api/drug/update.php'
-        }).then(function successCallback(response) {
+	// update drug record / save changes
+  $scope.updateProduct = function () {
+    $http({
+      method: 'POST',
+      data: {
+        drug_id: $scope.drug_id,
+        name: $scope.name,
+        formula: $scope.formula,
+        pharmaceutical_company_id: $scope.pharmaceutical_company_id
+      },
+      url: 'api/drug/update.php'
+    }).then(function successCallback(response) {
+			// tell the user drug record was updated
+      Materialize.toast(response.data, 4000);
 
-            // tell the user drug record was updated
-            Materialize.toast(response.data, 4000);
+			// close modal
+      $('#modal-drug-form').modal('close');
 
-            // close modal
-            $('#modal-drug-form').modal('close');
+			// clear modal content
+      $scope.clearForm();
 
-            // clear modal content
-            $scope.clearForm();
+			// refresh the drug list
+      $scope.getAll();
+    });
+  };
 
-            // refresh the drug list
-            $scope.getAll();
-        });
-    }
+	// retrieve record to fill out the form
+  $scope.readOne = function (drug_id) {
+		// change modal title
+    $('#modal-drug-title').text('Edit drug');
 
-    // retrieve record to fill out the form
-    $scope.readOne = function(drug_id){
+		// show udpate drug button
+    $('#btn-update-drug').show();
 
-        // change modal title
-        $('#modal-drug-title').text("Edit drug");
+		// show create drug button
+    $('#btn-create-drug').hide();
 
-        // show udpate drug button
-        $('#btn-update-drug').show();
+		// post drug_id of drug to be edited
+    $http({
+      method: 'POST',
+      data: {
+        drug_id: drug_id
+      },
+      url: 'api/drug/read_one.php'
+    }).then(function successCallback(response) {
+				// put the values in form
+      $scope.drug_id = response.data[0].drug_id;
+      $scope.name = response.data[0].name;
+      $scope.formula = response.data[0].formula;
+      $scope.pharmaceutical_company_id = response.data[0].pharmaceutical_company_id;
 
-        // show create drug button
-        $('#btn-create-drug').hide();
+				// show modal
+      $('#modal-drug-form').modal('open');
+    })
+			.error(function (data, status, headers, config) {
+  Materialize.toast('Unable to retrieve record.', 4000);
+});
+  };
 
-        // post drug_id of drug to be edited
-        $http({
-            method: 'POST',
-            data: { 'drug_id' : drug_id },
-            url: 'api/drug/read_one.php'
-        }).then(function successCallback(response) {
+	// read drugS
+  $scope.getAll = function () {
+    $http({
+      method: 'GET',
+      url: 'api/drug/read.php'
+    }).then(function successCallback(response) {
+      $scope.names = response.data.records;
+    });
+  };
 
-            // put the values in form
-            $scope.drug_id = response.data[0]["drug_id"];
-            $scope.name = response.data[0]["name"];
-            $scope.formula = response.data[0]["formula"];
-            $scope.pharmaceutical_company_id = response.data[0]["pharmaceutical_company_id"];
+  $scope.showCreateForm = function () {
+		// clear form
+    $scope.clearForm();
 
-            // show modal
-            $('#modal-drug-form').modal('open');
-        })
-        .error(function(data, status, headers, config){
-            Materialize.toast('Unable to retrieve record.', 4000);
-        });
-    }
+		// change modal title
+    $('#modal-drug-title').text('Create New drug');
 
-    // read drugS
-    $scope.getAll = function(){
-        $http({
-            method: 'GET',
-            url: 'api/drug/read.php'
-        }).then(function successCallback(response) {
-            $scope.names = response.data.records;
-        });
-    }
+		// hide update drug button
+    $('#btn-update-drug').hide();
 
-    $scope.showCreateForm = function(){
+		// show create drug button
+    $('#btn-create-drug').show();
+  };
 
-        // clear form
-        $scope.clearForm();
+	// clear variable / form values
+  $scope.clearForm = function () {
+    $scope.drug_id = '';
+    $scope.name = '';
+    $scope.formula = '';
+    $scope.pharmaceutical_company_id = '';
+  };
 
-        // change modal title
-        $('#modal-drug-title').text("Create New drug");
+	// create new drug
+  $scope.createProduct = function () {
+    $http({
+      method: 'POST',
+      data: {
+        name: $scope.name,
+        formula: $scope.formula,
+        pharmaceutical_company_id: $scope.pharmaceutical_company_id
+      },
+      url: 'api/drug/create.php'
+    }).then(function successCallback(response) {
+			// tell the user new drug was created
+      Materialize.toast(response.data, 4000);
 
-        // hide update drug button
-        $('#btn-update-drug').hide();
+			// close modal
+      $('#modal-drug-form').modal('close');
 
-        // show create drug button
-        $('#btn-create-drug').show();
+			// clear modal content
+      $scope.clearForm();
 
-    }
-
-    // clear variable / form values
-    $scope.clearForm = function(){
-        $scope.drug_id = "";
-        $scope.name = "";
-        $scope.formula = "";
-        $scope.pharmaceutical_company_id = "";
-    }
-
-    // create new drug
-    $scope.createProduct = function(){
-
-        $http({
-            method: 'POST',
-            data: {
-                'name' : $scope.name,
-                'formula' : $scope.formula,
-                'pharmaceutical_company_id' : $scope.pharmaceutical_company_id
-            },
-            url: 'api/drug/create.php'
-        }).then(function successCallback(response) {
-
-            // tell the user new drug was created
-            Materialize.toast(response.data, 4000);
-
-            // close modal
-            $('#modal-drug-form').modal('close');
-
-            // clear modal content
-            $scope.clearForm();
-
-            // refresh the list
-            $scope.getAll();
-        });
-    }
-
+			// refresh the list
+      $scope.getAll();
+    });
+  };
 });
