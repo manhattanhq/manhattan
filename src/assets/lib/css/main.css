@@ -7,7 +7,7 @@ h1 {
 }
 
 h2 {
-    font-family: Roboto;
+    font-family: inherit;
     font-size: 3.56rem;
     color: #212121;
     letter-spacing: 0.1em;
@@ -15,7 +15,7 @@ h2 {
 }
 
 h3 {
-    font-family: Roboto;
+    font-family: inherit;
     font-size: 2.92rem;
     color: #212121;
     font-weight: 400;
@@ -23,7 +23,7 @@ h3 {
 }
 
 h4 {
-    font-family: Roboto;
+    font-family: inherit;
     font-size: 2.28rem;
     color: #212121;
     font-weight: 400;
@@ -31,7 +31,7 @@ h4 {
 }
 
 h5 {
-    font-family: Roboto;
+    font-family: inherit;
     font-size: 1.64rem;
     color: #212121;
     font-weight: 400;
@@ -39,7 +39,7 @@ h5 {
 }
 
 p {
-    font-family: Roboto;
+    font-family: inherit;
     font-size: 14px;
     font-weight: 400;
     color: #727272;
@@ -180,25 +180,30 @@ header nav .nav-wrapper .button-collapse i {
     color: #FFFFFF;
 }
 
+header .top-nav-collapse {
+    background: #FFFFFF;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    transition: all .3s ease-in-out;
+}
 
-header .nav-wrapper .brand-logo {
+header .top-nav-collapse .nav-wrapper .brand-logo {
     font-size: 2rem;
     color: #212121;
     letter-spacing: 0.2rem;
     font-weight: 700;
 }
 
-header .nav-wrapper .brand-logo span {
+header .top-nav-collapse .nav-wrapper .brand-logo span {
     color: #546DFE;
     font-size: 4rem;
 }
 
-header .nav-wrapper .button-collapse {
+header .top-nav-collapse .nav-wrapper .button-collapse {
     display: block;
     float: right;
 }
 
-header .nav-wrapper .button-collapse i {
+header .top-nav-collapse .nav-wrapper .button-collapse i {
     line-height: 80px;
     color: #212121;
 }
