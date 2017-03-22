@@ -297,6 +297,8 @@ git clone https://github.com/manhattanhq/manhattan.git
 cd manhattan
 ```
 
+[:arrow_up:Back to top!](#contents)
+
 ## Links
 
 ### Tutorials
@@ -311,6 +313,8 @@ cd manhattan
 
 ## Credits
 
+[:arrow_up:Back to top!](#contents)
+
 ## Team
 
 :sparkles: **<>** with :heart: by George, Konstantinos & Klaus :sparkles:
@@ -318,6 +322,8 @@ cd manhattan
 [![George Baxopoulos](https://avatars.githubusercontent.com/u/)](https://github.com/georgebax) | [![Konstantinos Mitropoulos](https://avatars.githubusercontent.com/u/)](https://github.com/tsikos7) | [![Klaus Sinani](https://avatars.githubusercontent.com/u/)](https://github.com/klauscfhq)
 --- | --- | ---
 [George Baxopoulos](http://github.com/georgebax) | [Konstantinos Mitropoulos](https://github.com/tsikos7) | [Klaus Sinani](https://github.com/klauscfhq)
+
+[:arrow_up:Back to top!](#contents)
 
 ## License
 
