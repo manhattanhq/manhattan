@@ -2,7 +2,7 @@
 
 > 🗽Materialy designed stellar🚀 database app
 
-[![Heroku](http://heroku-badge.herokuapp.com/?app=manhattanhq&style=flat&svg=1)](https://manhattanhq.herokuapp.com/) [![Trello Board](https://img.shields.io/badge/trello-board-blue.svg)](https://trello.com/b/ut3VcEu2) [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo) [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/manhattanhq/Lobby)  [![Repo Size](https://reposs.herokuapp.com/?path=manhattanhq/manhattan&color=orange)](https://raw.githubusercontent.com/manhattanhq/manhattan) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/klauscfhq/os-x-ntua/master/license) 
+[![Heroku](http://heroku-badge.herokuapp.com/?app=manhattanhq&style=flat&svg=1)](https://manhattanhq.herokuapp.com/) [![Trello Board](https://img.shields.io/badge/trello-board-blue.svg)](https://trello.com/b/ut3VcEu2) [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo) [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/manhattanhq/Lobby)  [![Repo Size](https://reposs.herokuapp.com/?path=manhattanhq/manhattan&color=orange)](https://raw.githubusercontent.com/manhattanhq/manhattan) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/klauscfhq/os-x-ntua/master/license)
 
 <div align="center">
     <a href="https://github.com/manhattanhq/manhattan">
@@ -18,7 +18,7 @@
   - [ER Model](#er-model)
   - [R Model](#r-model)
 - [API](#api)
-  - [SQL Structure](#sql-structure)
+  - [Backend](#backend)
 - [Download](#download)
 - [Credits](#credits)
 - [Links](#links)
@@ -236,53 +236,52 @@ Also, we replaced the composite attribute **Address** with the simple attributes
 
 ## API
 
-### SQL Structure
+### Backend
 
-Some sample structure designs pulled from the latest main Manhattan SQL source.
+#### SQL Structure
 
-### Patient Table Design
+Structure designs pulled from the latest main Manhattan MySQL source.
+
+#### Patient Table Design
 
 #### Table structure for `patient`
 
 ```sql
+DROP TABLE IF EXISTS `patient`;
 CREATE TABLE `patient` (
-  `patient_id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `surname` varchar(20) NOT NULL,
-  `town` varchar(20) NOT NULL,
-  `street_name` varchar(20) NOT NULL,
-  `number` int(11) NOT NULL,
-  `postalcode` int(11) NOT NULL,
-  `age` int(2) NOT NULL
+    `patient_id` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(20) NOT NULL,
+    `surname` varchar(20) NOT NULL,
+    `town` varchar(20) NOT NULL,
+    `street_name` varchar(20),
+    `number` int(11),
+    `postalcode` int(11),
+    `age` int(2) NOT NULL,
+    `doctor_id` int(11) NOT NULL,
+    `created` datetime NOT NULL,
+    `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`patient_id`),
+    KEY `doctor_id` (`doctor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-#### Indexes for table `patient`
-
-```sql
-ALTER TABLE `patient`
-  ADD PRIMARY KEY (`patient_id`);
-```
-
-### Prescription Table Design
+#### Prescription Table Design
 
 #### Table structure for `prescription`
 
 ```sql
+DROP TABLE IF EXISTS `prescription`;
 CREATE TABLE `prescription` (
-  `patient_id` int(11) NOT NULL,
-  `doctor_id` int(11) NOT NULL,
-  `drug_id` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `quantity` int(10) NOT NULL
+    `patient_id` int(11) NOT NULL,
+    `doctor_id` int(11) NOT NULL,
+    `drug_id` int(11) NOT NULL,
+    `date` date NOT NULL,
+    `quantity` int(10),
+    PRIMARY KEY (`patient_id`,`doctor_id`,`drug_id`),
+    KEY `patient_id` (`patient_id`),
+    KEY `doctor_id` (`doctor_id`),
+    KEY `drug_id` (`drug_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-```
-
-#### Indexes for table `prescription`
-
-```sql
-ALTER TABLE `prescription`
-  ADD PRIMARY KEY (`patient_id`,`doctor_id`,`drug_id`);
 ```
 
 [:arrow_up:Back to top!](#contents)
