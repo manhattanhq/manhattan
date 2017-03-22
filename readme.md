@@ -1,4 +1,8 @@
-# [![Manhattan](media/header.png)](https://github.com/manhattanhq/manhattan)
+<div align="center">
+      <a href="https://github.com/manhattanhq/manhattan">
+        <img src="https://cdn.rawgit.com/manhattanhq/manhattan/16b69460/media/logo.png" alt="Manhattan" width="40%">
+      </a>
+</div>
 
 > 🗽Materialy designed stellar🚀 database app
 
