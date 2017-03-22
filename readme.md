@@ -246,7 +246,9 @@ Also, we replaced the composite attribute **Address** with the simple attributes
 
 Structure designs pulled from the latest main Manhattan MySQL source.
 
-#### Patient Table Design
+#### Entities Table Design
+
+#### Patient Table
 
 #### Table structure for `patient`
 
@@ -269,7 +271,7 @@ CREATE TABLE `patient` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-#### Prescription Table Design
+#### Prescription Table
 
 #### Table structure for `prescription`
 
@@ -286,6 +288,32 @@ CREATE TABLE `prescription` (
     KEY `doctor_id` (`doctor_id`),
     KEY `drug_id` (`drug_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+#### Triggers Design
+
+#### Patients Age Check on Insert
+
+```sql
+DROP TRIGGER IF EXISTS `patient_age_insert_check`;
+DELIMITER //
+ CREATE TRIGGER `patient_age_insert_check` BEFORE INSERT ON `patient`
+  FOR EACH ROW IF NEW.age < 0 || NEW.age = 0 THEN SET NEW.age = NULL; END IF;
+//
+DELIMITER;
+```
+
+#### Doctor Deletion
+
+```sql
+DROP TRIGGER IF EXISTS `doctor_deletion`;
+DELIMITER //
+CREATE TRIGGER `doctor_deletion` BEFORE DELETE ON `doctor`
+  FOR EACH ROW BEGIN
+  DELETE FROM patient
+  WHERE OLD.doctor_id = patient.doctor_id;
+END
+//
+DELIMITER ;
 ```
 
 [:arrow_up:Back to top!](#contents)
