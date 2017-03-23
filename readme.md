@@ -1,8 +1,8 @@
-<div align="center">
+<h1 align="center">
       <a href="https://github.com/manhattanhq/manhattan">
         <img src="https://cdn.rawgit.com/manhattanhq/manhattan/16b69460/media/logo.png" alt="Manhattan" width="40%">
       </a>
-</div>
+</h1>
 
 > 🗽Materialy designed stellar🚀 database app
 
