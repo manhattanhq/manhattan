@@ -6,6 +6,7 @@
 
 > 🗽Materialy designed stellar🚀 database app
 
+[![Build Status](https://travis-ci.org/manhattanhq/manhattan.svg?branch=master)](https://travis-ci.org/manhattanhq/manhattan) 
 [![Heroku](http://heroku-badge.herokuapp.com/?app=manhattanhq&style=flat&svg=1)](https://manhattanhq.herokuapp.com/) [![Trello Board](https://img.shields.io/badge/trello-board-blue.svg)](https://trello.com/b/ut3VcEu2) [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo) [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/manhattanhq/Lobby)  [![Repo Size](https://reposs.herokuapp.com/?path=manhattanhq/manhattan&color=orange)](https://raw.githubusercontent.com/manhattanhq/manhattan) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/klauscfhq/os-x-ntua/master/license)
 
 <div align="center">
