@@ -1,6 +1,6 @@
 <h1 align="center">
       <a href="https://github.com/manhattanhq/manhattan">
-        <img src="https://cdn.rawgit.com/manhattanhq/manhattan/16b69460/media/logo.png" alt="Manhattan" width="40%">
+        <img src="https://cdn.rawgit.com/manhattanhq/manhattan/6fbc78bc/media/logo.png" alt="Manhattan" width="60%">
       </a>
 </h1>
 
@@ -365,7 +365,7 @@ MIT © [George Baxopoulos](https://github.com/georgebax), [Konstantinos Mitropou
   <br>
     <br>
       <a href="https://github.com/manhattanhq/manhattan">
-        <img src="https://cdn.rawgit.com/manhattanhq/manhattan/16b69460/media/logo.png" alt="Manhattan" width="40%">
+        <img src="https://cdn.rawgit.com/manhattanhq/manhattan/6fbc78bc/media/logo.png" alt="Manhattan" width="40%">
       </a>
     <br>
   <br>
