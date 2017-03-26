@@ -57,4 +57,12 @@ $(document).ready(function () {
     singleItem: true
 
   });
+
+ // Objects Filtre
+
+  $('#portfolio-items').mixItUp({
+    animation: {
+      effects: 'fade rotateY(-25deg)'
+    }
+  });
 });
