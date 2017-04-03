@@ -54,9 +54,7 @@ p {
     color: #FFFFFF;
 }
 
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
     background: #0097A7;
 }
 
@@ -65,9 +63,7 @@ p {
     color: #FFFFFF;
 }
 
-.btn-primary-dark:hover,
-.btn-primary-dark:focus,
-.btn-primary-dark:active {
+.btn-primary-dark:hover, .btn-primary-dark:focus, .btn-primary-dark:active {
     background: #546DFE;
     color: #FFFFFF;
 }
@@ -77,9 +73,7 @@ p {
     color: #212121;
 }
 
-.btn-white:hover,
-.btn-white:focus,
-.btn-white:active {
+.btn-white:hover, .btn-white:focus, .btn-white:active {
     background: #B6B6B6;
     color: #212121;
 }
@@ -88,9 +82,7 @@ p {
     background: #F3432C;
 }
 
-.btn-secondary:hover,
-.btn-secondary:focus,
-.btn-secondary:active {
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
     background: #0097A7;
 }
 
@@ -104,7 +96,6 @@ p {
 
 /* Media Queries */
 
-
 @media (max-width: 992px) {
     #hero h1 {
         font-size: 4rem;
@@ -115,12 +106,10 @@ p {
 }
 
 @media (max-width: 800px) {
-
     #hero .slides li .caption {
         left: 15%;
     }
-    #hero .slides li .caption .btn-primary,
-    #hero .slides li .caption .btn-secondary {
+    #hero .slides li .caption .btn-primary, #hero .slides li .caption .btn-secondary {
         margin-right: 0;
     }
     #hero .caption {
@@ -135,7 +124,6 @@ p {
     #hero .slider.fullscreen {
         display: none;
     }
-
 }
 
 
@@ -229,14 +217,14 @@ header .top-nav-collapse .nav-wrapper .button-collapse i {
     color: #FFFFFF;
 }
 
-#hero .caption .btn-primary,
-#hero .caption .btn-secondary {
+#hero .caption .btn-primary, #hero .caption .btn-secondary {
     margin-right: 2.1rem;
 }
 
 #hero .indicators .indicator-item.active {
     background: #546DFE;
 }
+
 
 /* Preloader */
 
@@ -271,4 +259,40 @@ header .top-nav-collapse .nav-wrapper .button-collapse i {
     top: 50%;
     left: 50%;
     margin: -25px 0 0 -25px;
+}
+
+
+/* Portfolio */
+
+#portfolio {
+    padding: 120px 0;
+}
+
+#portfolio h2 {
+    text-align: center;
+}
+
+#portfolio h2 span {
+    color: #546DFE;
+    font-size: 4rem;
+}
+
+#portfolio #portfolio-items .mix {
+    display: table-column-group;
+}
+
+#portfolio .tabs {
+    margin: 60px 0;
+}
+
+#portfolio .tabs a {
+    color: #546DFE;
+}
+
+#portfolio .tabs .indicator {
+    background: #F3432C;
+}
+
+#portfolio .card a, #portfolio .card i {
+    color: #546DFE;
 }
