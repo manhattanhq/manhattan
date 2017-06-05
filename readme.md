@@ -351,9 +351,9 @@ cd manhattan
 
 :sparkles: **<>** with :heart: by George, Konstantinos & Klaus :sparkles:
 
-[![George Baxopoulos](https://avatars.githubusercontent.com/u/?s=130)](https://github.com/georgebax) | [![Konstantinos Mitropoulos](https://avatars.githubusercontent.com/u/?s=130)](https://github.com/tsikos7) | [![Klaus Sinani](https://avatars.githubusercontent.com/u/12670537?s=130)](https://github.com/klauscfhq)
+[![George Baxopoulos](https://avatars.githubusercontent.com/u/19195396?s=130)](https://github.com/georgebax) | [![Konstantinos Mitropoulos](https://avatars.githubusercontent.com/u/24499401?s=130)](https://github.com/tsikos7) | [![Klaus Sinani](https://avatars.githubusercontent.com/u/12670537?s=130)](https://github.com/klauscfhq)
 --- | --- | ---
-[George Baxopoulos](http://github.com/georgebax) | [Konstantinos Mitropoulos](https://github.com/tsikos7) | [Klaus Sinani](https://github.com/klauscfhq) [:mailbox:](mailto:klauscfhq@protonmail.com)
+[George Baxopoulos](http://github.com/georgebax) [:mailbox:](mailto:baxopoulos.george@gmail.com) | [Konstantinos Mitropoulos](https://github.com/tsikos7) [:mailbox:](mailto:konsmitr@gmail.com) | [Klaus Sinani](https://github.com/klauscfhq) [:mailbox:](mailto:klauscfhq@protonmail.com)
 
 [:arrow_up:Back to top!](#contents)
 
